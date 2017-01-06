@@ -1,0 +1,23 @@
+G04 #@! TF.GenerationSoftware,KiCad,Pcbnew,no-vcs-found*
+G04 #@! TF.CreationDate,2017-01-06T11:39:05+01:00*
+G04 #@! TF.ProjectId,ESP32-HELP-Button-CR2032,45535033322D48454C502D427574746F,rev?*
+G04 #@! TF.FileFunction,Paste,Bot*
+G04 #@! TF.FilePolarity,Positive*
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW no-vcs-found) date Fri Jan  6 11:39:05 2017*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%ADD10C,0.100000*%
+%ADD11C,16.000000*%
+%ADD12R,3.000000X6.000000*%
+G04 APERTURE END LIST*
+D10*
+D11*
+X42067961Y-45473131D03*
+D12*
+X29067961Y-45473131D03*
+X55067961Y-45273131D03*
+M02*
