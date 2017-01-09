@@ -1,0 +1,20 @@
+### Module positions - created on Mon Jan  9 16:22:57 2017 ###
+### Printed by Pcbnew version pcbnew no-vcs-found
+## Unit = inches, Angle = deg.
+## Side : All
+# Ref     Val             Package                        PosX       PosY       Rot  Side
+BT2       Battery         18650_Battery_Holder_SMT     3.3533     0.6428  180.0000  bottom
+G***      LOGO            Logo_silk_OSHW_6x6mm         0.2606     0.3355  180.0000  bottom
+REF**     pcbreflux_logo  pcbreflux_logo               0.2306     0.9505    0.0000  bottom
+C1        100nF           c_0603                       1.9291     0.9547  270.0000  top
+C2        10uF            c_1206                       2.0472     0.9293  270.0000  top
+D1        LED             LED_0603                     1.2209     0.6261   90.0000  top
+D2        LED             LED_0603                     1.3309     0.6281   90.0000  top
+G***      LOGO            Logo_silk_OSHW_6x6mm         0.2606     0.3355    0.0000  top
+Q1        Q_NMOS_GDS      sot23                        1.9685     0.6693   90.0000  top
+R1        10K             r_0603                       2.1927     0.9745  270.0000  top
+R2        330R            r_0603                       1.2209     0.4342   90.0000  top
+R3        330R            r_0603                       1.3259     0.4342   90.0000  top
+REF**     pcbreflux_logo  pcbreflux_logo               0.2306     0.9455    0.0000  top
+SW1       SW_PUSH         SMD_Reed_Switch              1.6906     0.9555  270.0000  top
+## End
