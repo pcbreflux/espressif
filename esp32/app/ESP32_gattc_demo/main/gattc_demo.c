@@ -271,7 +271,7 @@ static void esp_gattc_cb(esp_gattc_cb_event_t event, esp_gatt_if_t gattc_if, esp
 			} else {
 				LOG_ERROR("SRVC UNKNOWN LEN %d", srvc_id->id.uuid.len);
 			}
-	        LOG_INFO("WRITE DESCR: client_if = %x",client_if);
+	        LOG_INFO("WRITE DESCR: gattc_if = %x",gattc_if);
             LOG_INFO("remote_bda %x,%x,%x,%x,%x,%x:",p_data->open.remote_bda[0],
             		p_data->open.remote_bda[1],p_data->open.remote_bda[2],
 					p_data->open.remote_bda[3],p_data->open.remote_bda[4],
@@ -280,7 +280,7 @@ static void esp_gattc_cb(esp_gattc_cb_event_t event, esp_gatt_if_t gattc_if, esp
             		server_dba[1],server_dba[2],
 					server_dba[3],server_dba[4],
 					server_dba[5]);
-			esp_ble_gattc_register_for_notify(client_if,server_dba,srvc_id,char_id);
+			esp_ble_gattc_register_for_notify(gattc_if,server_dba,srvc_id,char_id);
         }
         break;
     }
