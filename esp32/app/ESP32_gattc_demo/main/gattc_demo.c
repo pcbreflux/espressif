@@ -60,11 +60,11 @@ static esp_ble_scan_params_t ble_scan_params = {
 };
 
 
-static void esp_gap_cb(uint32_t event, void *param);
+static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param);
 
-static void esp_gattc_cb(uint32_t event, void *param);
+static void esp_gattc_cb(esp_gattc_cb_event_t event, esp_gatt_if_t gattc_if, esp_ble_gattc_cb_param_t *param);
 
-static void esp_gap_cb(uint32_t event, void *param)
+static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param)
 {
     uint8_t *adv_name = NULL;
     uint8_t adv_name_len = 0;
@@ -118,7 +118,7 @@ static void esp_gap_cb(uint32_t event, void *param)
 }
 
 
-static void esp_gattc_cb(uint32_t event, void *param)
+static void esp_gattc_cb(esp_gattc_cb_event_t event, esp_gatt_if_t gattc_if, esp_ble_gattc_cb_param_t *param)
 {
     uint16_t conn_id = 0;
     esp_ble_gattc_cb_param_t *p_data = (esp_ble_gattc_cb_param_t *)param;
@@ -127,14 +127,12 @@ static void esp_gattc_cb(uint32_t event, void *param)
     switch (event) {
     case ESP_GATTC_REG_EVT:
         status = p_data->reg.status;
-        client_if = p_data->reg.gatt_if;
-        LOG_INFO("ESP_GATTC_REG_EVT status = %x, client_if = %x", status, client_if);
+        LOG_INFO("ESP_GATTC_REG_EVT status = %x, client_if = %x", status, gattc_if);
         break;
     case ESP_GATTC_OPEN_EVT:
         conn_id = p_data->open.conn_id;
-        client_if = p_data->open.gatt_if;
-        LOG_INFO("ESP_GATTC_OPEN_EVT conn_id %d, if %d, status %d", conn_id, p_data->open.gatt_if, p_data->open.status);
-        esp_ble_gattc_search_service(conn_id, NULL);
+        LOG_INFO("ESP_GATTC_OPEN_EVT conn_id %d, if %d, status %d", conn_id, gattc_if, p_data->open.status);
+        esp_ble_gattc_search_service(gattc_if, conn_id, NULL);
         break;
     case ESP_GATTC_READ_CHAR_EVT: {
         // esp_gatt_srvc_id_t *srvc_id = &p_data->read.srvc_id;
@@ -217,7 +215,7 @@ static void esp_gattc_cb(uint32_t event, void *param)
                      srvc_id->id.uuid.uuid.uuid128[7], srvc_id->id.uuid.uuid.uuid128[8], srvc_id->id.uuid.uuid.uuid128[9],
                      srvc_id->id.uuid.uuid.uuid128[10], srvc_id->id.uuid.uuid.uuid128[11], srvc_id->id.uuid.uuid.uuid128[12],
                      srvc_id->id.uuid.uuid.uuid128[13], srvc_id->id.uuid.uuid.uuid128[14], srvc_id->id.uuid.uuid.uuid128[15]);
-            esp_ble_gattc_get_characteristic(p_data->search_res.conn_id,srvc_id,NULL);
+            esp_ble_gattc_get_characteristic(gattc_if,p_data->search_res.conn_id,srvc_id,NULL);
         } else {
             LOG_ERROR("UNKNOWN LEN %d", srvc_id->id.uuid.len);
         }
@@ -229,7 +227,7 @@ static void esp_gattc_cb(uint32_t event, void *param)
         esp_gatt_id_t *descr_id = &p_data->write.descr_id;
         conn_id = p_data->open.conn_id;
         LOG_INFO("WRITE DESCR: open.conn_id = %x search_res.conn_id = %x  write.conn_id = %x", conn_id,p_data->search_res.conn_id,p_data->write.conn_id);
-        LOG_INFO("WRITE DESCR: write.status = %x inst_id = %x open.gatt_if = %x", p_data->write.status, char_id->inst_id,p_data->open.gatt_if);
+        LOG_INFO("WRITE DESCR: write.status = %x inst_id = %x open.gatt_if = %x", p_data->write.status, char_id->inst_id,gattc_if);
         if (p_data->write.status==0) {
 			if (char_id->uuid.len == ESP_UUID_LEN_16) {
 				LOG_INFO("Char UUID16: %x", char_id->uuid.uuid.uuid16);
@@ -318,7 +316,7 @@ static void esp_gattc_cb(uint32_t event, void *param)
         esp_gatt_id_t *char_id = &p_data->get_char.char_id;
         conn_id = p_data->open.conn_id;
         LOG_INFO("GET CHAR: open.conn_id = %x search_res.conn_id = %x  get_char.conn_id = %x", conn_id,p_data->search_res.conn_id,p_data->get_char.conn_id);
-        LOG_INFO("GET CHAR: get_char.char_prop = %x get_char.status = %x inst_id = %x open.gatt_if = %x", p_data->get_char.char_prop, p_data->get_char.status, char_id->inst_id,p_data->open.gatt_if);
+        LOG_INFO("GET CHAR: get_char.char_prop = %x get_char.status = %x inst_id = %x open.gatt_if = %x", p_data->get_char.char_prop, p_data->get_char.status, char_id->inst_id,gattc_if);
         LOG_INFO("remote_bda %x,%x,%x,%x,%x,%x:",p_data->open.remote_bda[0],
         		p_data->open.remote_bda[1],p_data->open.remote_bda[2],
 				p_data->open.remote_bda[3],p_data->open.remote_bda[4],
@@ -336,9 +334,9 @@ static void esp_gattc_cb(uint32_t event, void *param)
 						 char_id->uuid.uuid.uuid128[10], char_id->uuid.uuid.uuid128[11], char_id->uuid.uuid.uuid128[12],
 						 char_id->uuid.uuid.uuid128[13], char_id->uuid.uuid.uuid128[14], char_id->uuid.uuid.uuid128[15]);
 				if (p_data->get_char.char_prop==18) {
-					esp_ble_gattc_get_descriptor(conn_id,srvc_id,char_id,NULL);
+					esp_ble_gattc_get_descriptor(gattc_if,conn_id,srvc_id,char_id,NULL);
 				} else {
-					esp_ble_gattc_get_characteristic(conn_id,srvc_id,char_id);
+					esp_ble_gattc_get_characteristic(gattc_if,conn_id,srvc_id,char_id);
 				}
 			} else {
 				LOG_ERROR("UNKNOWN LEN %d", char_id->uuid.len);
@@ -352,7 +350,7 @@ static void esp_gattc_cb(uint32_t event, void *param)
         esp_gatt_id_t *descr_id = &p_data->get_descr.descr_id;
         conn_id = p_data->open.conn_id;
         LOG_INFO("GET DESCR: open.conn_id = %x search_res.conn_id = %x  get_descr.conn_id = %x", conn_id,p_data->search_res.conn_id,p_data->get_descr.conn_id);
-        LOG_INFO("GET DESCR: get_descr.status = %x inst_id = %x open.gatt_if = %x", p_data->get_descr.status, char_id->inst_id,p_data->open.gatt_if);
+        LOG_INFO("GET DESCR: get_descr.status = %x inst_id = %x open.gatt_if = %x", p_data->get_descr.status, char_id->inst_id,gattc_if);
         uint8_t value[2];
         value[0]=0x01;
         value[1]=0x00;
@@ -385,7 +383,7 @@ static void esp_gattc_cb(uint32_t event, void *param)
 			} else {
 				LOG_ERROR("Decr UNKNOWN LEN %d", descr_id->uuid.len);
 			}
-			esp_ble_gattc_write_char_descr (conn_id,srvc_id,char_id,descr_id,2,&value[0],ESP_GATT_WRITE_TYPE_NO_RSP,ESP_GATT_AUTH_REQ_NONE);
+			esp_ble_gattc_write_char_descr (gattc_if,conn_id,srvc_id,char_id,descr_id,2,&value[0],ESP_GATT_WRITE_TYPE_NO_RSP,ESP_GATT_AUTH_REQ_NONE);
         }
         break;
     }
@@ -441,14 +439,14 @@ void ble_client_appRegister(void)
 
 void gattc_client_test(void)
 {
-    esp_init_bluetooth();
-    esp_enable_bluetooth();
+    esp_bluedroid_init();
+    esp_bluedroid_enable();
     ble_client_appRegister();
 }
 
 void app_main()
 {
-    bt_controller_init();
+    esp_bt_controller_init();
     gattc_client_test();
 }
 
