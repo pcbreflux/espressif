@@ -183,7 +183,7 @@ static void mqtt_task(void *pvParameters)
 			message.payload = (void*)msgbuf;
 			message.payloadlen = strlen(msgbuf)+1;
 
-			ret = MQTTPublish(&client, "channels/212525/publish/VNOFJH1DQHUCAC5Z", &message);
+			ret = MQTTPublish(&client, "channels/<your chanel id>/publish/<your write API key>", &message);
 			if (ret != SUCCESS) {
 				ESP_LOGI(TAG, "MQTTPublish not SUCCESS: %d", ret);
 				goto exit;
