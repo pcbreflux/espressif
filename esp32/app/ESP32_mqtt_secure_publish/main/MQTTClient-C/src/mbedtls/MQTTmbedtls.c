@@ -417,6 +417,7 @@ int NetworkConnect(Network* n, char* addr, int port)
 	}
 	int len;
 
+        // ToDo: generate random UUID i.e. Sec-WebSocket-Key like unix command: uuidgen -r | base64 -
 	sprintf((char *)n->ws_sendbuf,"GET /mqtt HTTP/1.1\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nHost: %s:%d\r\nOrigin: https://%s:%d\r\nSec-WebSocket-Key: NDQzNjNmOTAtNzQ5ZC00MDVjLTg0N2QtM2ZiMjRhYTM1ZmY3Cg==\r\nSec-WebSocket-Version: 13\r\nSec-WebSocket-Protocol: mqtt\r\n\r\n",addr,port,addr,port);
 
 	ESP_LOGI(TAG, "req=[%s]",n->ws_sendbuf);
