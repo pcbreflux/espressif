@@ -1,4 +1,4 @@
-# MQTT Secure viw HTTPS Websocket Example
+# MQTT Secure via HTTPS Websocket Example
 
 Uses an mbedTLS socket to make a very simple HTTPS request over a secure connection, including verifying the server TLS certificate.
 
