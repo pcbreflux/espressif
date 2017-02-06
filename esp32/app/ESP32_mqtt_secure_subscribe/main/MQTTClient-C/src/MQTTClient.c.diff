@@ -1,0 +1,22 @@
+112,113c112
+<     rc = c->ipstack->mqttread(c->ipstack, c->readbuf, 1, TimerLeftMS(timer));
+<     if (rc != 1)
+---
+>     if (c->ipstack->mqttread(c->ipstack, c->readbuf, 1, TimerLeftMS(timer)) != 1)
+128d126
+< //	printf("MQTT readPacket %d\n",rc);
+221d218
+< //	printf("MQTT keepalive %d\n",rc);
+287,295c284,285
+<     if (rc == SUCCESS) {
+<     	if (packet_type == 0xFFFF) {
+<     		rc = -1;
+<     	} else {
+<             rc = packet_type;
+<     	}
+<     }
+< 
+< //    printf("MQTT cycle %d\n",rc);
+---
+>     if (rc == SUCCESS)
+>         rc = packet_type;
