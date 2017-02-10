@@ -12,7 +12,7 @@
  *
  * Contributors:
  *    Allan Stockdill-Mander - initial API and implementation and/or initial documentation
- *    pcbreflux - mbedtls implementation via websocket
+ *    pcbreflux - mbedtls implementation via tls and websocket
  *******************************************************************************/
 
 #include "MQTTmbedtls.h"
@@ -255,7 +255,12 @@ int buffered_mbedtls_read(Network* n, int timeout_ms) {
 			ret = 0;
 			break;
 		}
-		if(ret <= 0) {
+		if(ret == 0) {
+			ESP_LOGD(TAG, "mbedtls_ssl_read returned -0x%x", -ret);
+			ret = -1;
+			break;
+		}
+		if(ret < 0) {
 			ESP_LOGE(TAG, "mbedtls_ssl_read returned -0x%x", -ret);
 			ret = -1;
 			break;
@@ -455,6 +460,7 @@ int NetworkConnect(Network* n, char* addr, int port) {
        You should consider using MBEDTLS_SSL_VERIFY_REQUIRED in your own code.
     */
     mbedtls_ssl_conf_authmode(&n->conf, MBEDTLS_SSL_VERIFY_REQUIRED);
+    // mbedtls_ssl_conf_authmode(&n->conf, MBEDTLS_SSL_VERIFY_OPTIONAL);
     mbedtls_ssl_conf_ca_chain(&n->conf, &n->cacert, NULL);
     mbedtls_ssl_conf_rng(&n->conf, mbedtls_ctr_drbg_random, &n->ctr_drbg);
 
@@ -597,103 +603,28 @@ exit:
 	return retVal;
 }
 
-int NetworkSub(Network* n) {
-    int ret = 0;
-	int retVal = -1;
-	int len;
-    Timer timer;
-    Timer ping_timer;
-
-    TimerInit(&timer);
-    TimerCountdownMS(&timer, 60000);
-
-    //unsigned char bufsub[] = { 0x82,0x8C,0x01,0x02,0x03,0x04,0x83,0x08,0x03,0x05,0x01,0x07,0x73,0x7D,0x75,0x2D,0x20,0x04 };
-	unsigned char bufsub[] = { 0x82,0x0A,0x00,0x01,0x00,0x05,0x70,0x79,0x74,0x2F,0x23,0x00 };
-
-	if (!TimerIsExpired(&timer)) {
-		ret = mqtt_mbedtls_write(n, bufsub, 12, TimerLeftMS(&timer));
-	}
-    TimerCountdown(&ping_timer, 60000); // record the fact that we have successfully sent the packet
-	// ret = websocket_mbedtls_write(n, bufsub, 12);
-	if(ret < 12) {
-		ESP_LOGE(TAG, "mbedtls_ssl_write returned -0x%x", -ret);
-		goto exit;
-	}
-	len = ret;
-	ESP_LOGI(TAG, "bufsub %d bytes written", len);
-	ESP_LOGI(TAG, "Reading MQTT response...");
-
-    buffered_mbedtls_read(n, 1000);
-/*
-	ESP_LOGI(TAG, "MQTT Yield response...");
-	do {
-		ret=buffered_mbedtls_read(n, 1000);
-		if(ret <= 0) {
-			ESP_LOGE(TAG, "mbedtls_ssl_write returned -0x%x", -ret);
-			goto exit;
-		}
-		for(int i = 4; i < ret; i++) {
-			putchar(n->mqtt_recvbuf[i]);
-		}
-    	printf("\n");
-
-	} while(1);
-*/
-
-	retVal = 0;
-
-	return retVal;
-
-exit:
-
-	return retVal;
-}
-
-int NetworkYield(Network* n) {
-    int ret = 0;
-	int retVal = -1;
-
-	do {
-		ret=buffered_mbedtls_read(n,1000);
-		if(ret <= 0) {
-			ESP_LOGE(TAG, "mbedtls_ssl_write returned -0x%x", -ret);
-			goto exit;
-		}
-		for(int i = 4; i < ret; i++) {
-			putchar(n->mqtt_recvbuf[i]);
-		}
-    	printf("\n");
-
-	} while(1);
-
-	retVal = 0;
-
-	return retVal;
-
-exit:
-	return retVal;
-}
-
-
 void NetworkDisconnect(Network* n) {
 
 	ESP_LOGI(TAG, "NetworkDisconnect");
-	ESP_LOGI(TAG, "mbedtls_ssl_close_notify");
+	ESP_LOGD(TAG, "mbedtls_ssl_close_notify");
 	mbedtls_ssl_close_notify(&n->ssl);
 	//ESP_LOGI(TAG, "mbedtls_ssl_session_reset");
 	//mbedtls_ssl_session_reset(&n->ssl);
-	ESP_LOGI(TAG, "mbedtls_net_free");
+	ESP_LOGD(TAG, "mbedtls_net_free");
 	mbedtls_net_free(&n->server_fd);
-	ESP_LOGI(TAG, "mbedtls_ssl_config_free");
+	/*
+		ESP_LOGI(TAG, "mbedtls_ssl_free");
+		mbedtls_ssl_free(&n->ssl); // -> still core dump at mbedtls_mpi_zeroize ! why ?
+	*/
+	ESP_LOGD(TAG, "mbedtls_ssl_config_free");
     mbedtls_ssl_config_free(&n->conf);
-	ESP_LOGI(TAG, "mbedtls_ssl_config_free");
+	ESP_LOGD(TAG, "mbedtls_ssl_config_free");
 	mbedtls_entropy_free(&n->entropy);
-    ESP_LOGI(TAG, "mbedtls_ctr_drbg_free");
+    ESP_LOGD(TAG, "mbedtls_ctr_drbg_free");
 	mbedtls_ctr_drbg_free(&n->ctr_drbg);
-	ESP_LOGI(TAG, "mbedtls_x509_crt_free");
+	ESP_LOGD(TAG, "mbedtls_x509_crt_free");
 	mbedtls_x509_crt_free(&n->cacert);
-	//ESP_LOGI(TAG, "mbedtls_ssl_free");
-	//mbedtls_ssl_free(&n->ssl);
+
     n->ws_recv_offset=0;
     n->ws_recv_len=0;
     n->mqtt_recv_offset=0;

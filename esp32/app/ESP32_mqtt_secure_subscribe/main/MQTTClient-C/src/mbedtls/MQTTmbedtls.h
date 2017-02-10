@@ -12,7 +12,7 @@
  *
  * Contributors:
  *    Allan Stockdill-Mander - initial API and implementation and/or initial documentation
- *    pcbreflux - mbedtls implementation via websocket
+ *    pcbreflux - mbedtls implementation via tls and websocket
  *******************************************************************************/
 
 #if !defined(MQTTmbedtls_H)

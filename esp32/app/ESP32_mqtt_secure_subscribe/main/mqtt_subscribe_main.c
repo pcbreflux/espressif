@@ -1,12 +1,10 @@
-/* HTTPS GET Example using plain mbedTLS sockets
- *
- * Contacts the howsmyssl.com API via TLS v1.2 and reads a JSON
- * response.
+/* MQTT Example using plain mbedTLS sockets
  *
  * Adapted from the ssl_client1 example in mbedtls.
  *
  * Original Copyright (C) 2006-2016, ARM Limited, All Rights Reserved, Apache 2.0 License.
  * Additions Copyright (C) Copyright 2015-2016 Espressif Systems (Shanghai) PTE LTD, Apache 2.0 License.
+ * Additions Copyright (C) Copyright 2017 pcbreflux, Apache 2.0 License.
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,6 +33,8 @@
 #include "esp_event_loop.h"
 #include "esp_log.h"
 #include "esp_system.h"
+#include "esp_task_wdt.h"
+
 #include "nvs_flash.h"
 
 #include "lwip/err.h"
@@ -52,9 +52,6 @@
 #include "mbedtls/error.h"
 #include "mbedtls/certs.h"
 
-//#include "esp32-hal.h"
-//#include "esp32-hal-spi.h"
-
 /* The examples use simple WiFi configuration that you can set via
    'make menuconfig'.
 
@@ -70,12 +67,9 @@
 const int CONNECTED_BIT = BIT0;
 
 /* Constants that aren't configurable in menuconfig */
-#define MQTT_SERVER "m20.cloudmqtt.com"
-//#define MQTT_PORT 1883
-//#define MQTT_PORT 24352
-#define MQTT_PORT 34352
-//#define MQTT_WEBSOCKET 0  // 0=no 1=yes
-#define MQTT_WEBSOCKET 1  // 0=no 1=yes
+#define MQTT_SERVER "xxx.cloudmqtt.com"
+#define MQTT_PORT 12345
+#define MQTT_WEBSOCKET 0  // 0=no 1=yes
 #define MQTT_BUF_SIZE 1024
 
 static unsigned char mqtt_sendBuf[MQTT_BUF_SIZE];
@@ -133,7 +127,6 @@ static void initialise_wifi(void)
 static void mqtt_message_handler(MessageData *md) {
 	ESP_LOGI(TAG, "Topic received!: %.*s %.*s", md->topicName->lenstring.len, md->topicName->lenstring.data, md->message->payloadlen, (char*)md->message->payload);
 }
-
 #pragma GCC diagnostic pop
 
 static void mqtt_task(void *pvParameters)
@@ -181,10 +174,10 @@ static void mqtt_task(void *pvParameters)
         clientId.cstring = buf;
 
 		MQTTString username = MQTTString_initializer;
-		username.cstring = "dev1";
+		username.cstring = "user";
 
 		MQTTString password = MQTTString_initializer;
-		password.cstring = "dev1";
+		password.cstring = "pass";
 
 
 		MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
@@ -203,33 +196,8 @@ static void mqtt_task(void *pvParameters)
 			goto exit;
 		}
 
-		char msgbuf[100];
-		for (int i=0;i<100000;i++) {
-
-			MQTTMessage message;
-			sprintf(msgbuf, "field1=%d&field2=%d&field3=%lf",i,(uint8_t)(esp_random()&0xFF),((double)(esp_random()&0xFFFFFFFF)/10000));
-
-			ESP_LOGI(TAG, "MQTTPublish  ... %s",msgbuf);
-			message.qos = QOS0;
-			message.retained = false;
-			message.dup = false;
-			message.payload = (void*)msgbuf;
-			message.payloadlen = strlen(msgbuf)+1;
-
-			ret = MQTTPublish(&client, "channels/212525/publish/VNOFJH1DQHUCAC5Z", &message);
-			if (ret != SUCCESS) {
-				ESP_LOGI(TAG, "MQTTPublish not SUCCESS: %d", ret);
-				goto exit;
-			}
-			for(int countdown = 1; countdown >= 0; countdown--) {
-//				ESP_LOGI(TAG, "%d...", countdown);
-				vTaskDelay(1000 / portTICK_RATE_MS);
-			}
-		}
-/*
 		ESP_LOGI(TAG, "MQTTSubscribe  ...");
-		ret = MQTTSubscribe(&client, "esp32/#", QOS0, mqtt_message_handler);
-		//ret = NetworkSub(&network);
+		ret = MQTTSubscribe(&client, "topic/subtopic/#", QOS0, mqtt_message_handler);
 		if (ret != SUCCESS) {
 			ESP_LOGI(TAG, "MQTTSubscribe: %d", ret);
 			goto exit;
@@ -237,22 +205,18 @@ static void mqtt_task(void *pvParameters)
 		ESP_LOGI(TAG, "MQTTYield  ...");
 		while(1) {
 			ret = MQTTYield(&client, (data.keepAliveInterval+1)*1000);
-			//ret = NetworkYield(&network);
 			if (ret != SUCCESS) {
 				ESP_LOGI(TAG, "MQTTYield: %d", ret);
 				goto exit;
 			}
 		}
-*/
 		exit:
 			MQTTDisconnect(&client);
 			NetworkDisconnect(&network);
-			//for(int countdown = 3; countdown >= 0; countdown--) {
-			//	ESP_LOGI(TAG, "%d...", countdown);
-			//	vTaskDelay(1000 / portTICK_RATE_MS);
-			//}
 			ESP_LOGI(TAG, "Starting again!");
     }
+    esp_task_wdt_delete();
+    vTaskDelete(NULL);
  }
 
 void app_main()
