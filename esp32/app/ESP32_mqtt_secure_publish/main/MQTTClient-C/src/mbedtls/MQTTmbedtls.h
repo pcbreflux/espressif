@@ -12,7 +12,7 @@
  *
  * Contributors:
  *    Allan Stockdill-Mander - initial API and implementation and/or initial documentation
- *    pcbreflux - mbedtls implementation via websocket
+ *    pcbreflux - mbedtls implementation via tls and websocket
  *******************************************************************************/
 
 #if !defined(MQTTmbedtls_H)
@@ -31,7 +31,9 @@
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
 
+//#include "mbedtls/config.h"
 #include "mbedtls/platform.h"
+#include "mbedtls/debug.h"
 #include "mbedtls/net.h"
 #include "mbedtls/debug.h"
 #include "mbedtls/ssl.h"
@@ -39,9 +41,16 @@
 #include "mbedtls/ctr_drbg.h"
 #include "mbedtls/error.h"
 #include "mbedtls/certs.h"
+#include "mbedtls/sha1.h"
+#include "mbedtls/base64.h"
+
+
+#include "lwip/sockets.h"
 
 #include "esp_system.h"
 #include "esp_log.h"
+
+#include "mqtt_uuid.h"
 
 #define WEBSOCKET_CONTINUATION 0x00
 #define WEBSOCKET_TEXT 0x01
@@ -53,6 +62,7 @@
 #define MBEDTLS_WEBSOCKET_SEND_BUF_LEN       1024
 #define MBEDTLS_WEBSOCKET_RECV_BUF_LEN       1024
 #define MBEDTLS_MQTT_RECV_BUF_LEN            1024
+//#define MBEDTLS_MQTT_DEBUG
 
 typedef struct Timer
 {
@@ -69,6 +79,11 @@ typedef struct Network
 {
 	mbedtls_ssl_context ssl;
     mbedtls_net_context server_fd;
+    mbedtls_entropy_context entropy;
+    mbedtls_ctr_drbg_context ctr_drbg;
+    mbedtls_x509_crt cacert;
+    mbedtls_ssl_config conf;
+
     unsigned char ws_sendbuf[MBEDTLS_WEBSOCKET_SEND_BUF_LEN];
     unsigned char ws_recvbuf[MBEDTLS_WEBSOCKET_RECV_BUF_LEN];
     unsigned char mqtt_recvbuf[MBEDTLS_MQTT_RECV_BUF_LEN];
@@ -76,6 +91,7 @@ typedef struct Network
     int ws_recv_len;
     int mqtt_recv_offset;
     int mqtt_recv_len;
+    uint8_t websocket;
 
 	int (*mqttread) (struct Network*, unsigned char*, int, int);
 	int (*mqttwrite) (struct Network*, unsigned char*, int, int);
@@ -87,6 +103,8 @@ int mqtt_mbedtls_write(Network*, unsigned char*, int, int);
 void NetworkInit(Network*);
 int NetworkConnect(Network*, char*, int);
 void NetworkDisconnect(Network*);
+int NetworkSub(Network*);
+int NetworkYield(Network*);
 
 #endif
 

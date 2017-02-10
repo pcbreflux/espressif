@@ -109,7 +109,8 @@ static int readPacket(MQTTClient* c, Timer* timer)
     int rem_len = 0;
 
     /* 1. read the header byte.  This has the packet type in it */
-    if (c->ipstack->mqttread(c->ipstack, c->readbuf, 1, TimerLeftMS(timer)) != 1)
+    rc = c->ipstack->mqttread(c->ipstack, c->readbuf, 1, TimerLeftMS(timer));
+    if (rc != 1)
         goto exit;
 
     len = 1;
@@ -124,6 +125,7 @@ static int readPacket(MQTTClient* c, Timer* timer)
     header.byte = c->readbuf[0];
     rc = header.bits.type;
 exit:
+//	printf("MQTT readPacket %d\n",rc);
     return rc;
 }
 
@@ -216,6 +218,7 @@ int keepalive(MQTTClient* c)
     }
 
 exit:
+//	printf("MQTT keepalive %d\n",rc);
     return rc;
 }
 
@@ -281,8 +284,15 @@ int cycle(MQTTClient* c, Timer* timer)
     }
     keepalive(c);
 exit:
-    if (rc == SUCCESS)
-        rc = packet_type;
+    if (rc == SUCCESS) {
+    	if (packet_type == 0xFFFF) {
+    		rc = -1;
+    	} else {
+            rc = packet_type;
+    	}
+    }
+
+//    printf("MQTT cycle %d\n",rc);
     return rc;
 }
 
