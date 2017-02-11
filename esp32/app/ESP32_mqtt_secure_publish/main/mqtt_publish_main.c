@@ -1,4 +1,4 @@
-/* HTTPS GET Example using plain mbedTLS sockets
+/* MQTT Example using mbedTLS sockets
  *
  * Contacts the howsmyssl.com API via TLS v1.2 and reads a JSON
  * response.
@@ -7,7 +7,7 @@
  *
  * Original Copyright (C) 2006-2016, ARM Limited, All Rights Reserved, Apache 2.0 License.
  * Additions Copyright (C) Copyright 2015-2016 Espressif Systems (Shanghai) PTE LTD, Apache 2.0 License.
- *
+ * Additions Copyright (C) Copyright 2017 pcbreflux, Apache 2.0 License.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,9 +52,6 @@
 #include "mbedtls/error.h"
 #include "mbedtls/certs.h"
 
-//#include "esp32-hal.h"
-//#include "esp32-hal-spi.h"
-
 /* The examples use simple WiFi configuration that you can set via
    'make menuconfig'.
 
@@ -74,6 +71,7 @@ const int CONNECTED_BIT = BIT0;
 #define MQTT_PORT 443
 //#define MQTT_PORT 1883
 #define MQTT_BUF_SIZE 1000
+#define MQTT_WEBSOCKET 1  // 0=no 1=yes
 
 static unsigned char mqtt_sendBuf[MQTT_BUF_SIZE];
 static unsigned char mqtt_readBuf[MQTT_BUF_SIZE];
@@ -141,6 +139,7 @@ static void mqtt_task(void *pvParameters)
 
 		MQTTClient client;
 		NetworkInit(&network);
+		network.websocket = MQTT_WEBSOCKET;
 
 		ESP_LOGI(TAG,"NetworkConnect %s:%d ...",MQTT_SERVER,MQTT_PORT);
 		NetworkConnect(&network, MQTT_SERVER, MQTT_PORT);
