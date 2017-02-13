@@ -1,8 +1,11 @@
 #include <stdio.h>
+#include <string.h>
+#include "stdbool.h"
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+
 #include "bt.h"
-#include <string.h>
 
 #define HCI_H4_CMD_PREAMBLE_SIZE           (4)
 
