@@ -22,6 +22,7 @@
  * limitations under the License.
  */
 #include <string.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
@@ -47,8 +48,7 @@
 #include "mbedtls/error.h"
 #include "mbedtls/certs.h"
 
-#include "esp32-hal.h"
-#include "esp32-hal-gpio.h"
+#include <driver/gpio.h>
 
 /* The examples use simple WiFi configuration that you can set via
    'make menuconfig'.
@@ -75,6 +75,18 @@ const int CONNECTED_BIT = BIT0;
 #define SMTPS_MAIL_RCPT2 "help2@gmail.com"
 #define SMTPS_USER "user@gmail.com"
 #define SMTPS_PWD "password"
+
+#define MAIN_POWER 25
+#define PIN_LED1 26
+#define PIN_LED2 27
+#define GPIO_OUTPUT_PIN_MASK  ((1<<MAIN_POWER) | (1<<PIN_LED1) | (1<<PIN_LED2))
+
+#ifndef HIGH
+    #define HIGH 1
+#endif
+#ifndef LOW
+    #define LOW 0
+#endif
 
 static const char *TAG = "esp32";
 
@@ -146,17 +158,18 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-#define MAIN_POWER 25
-#define PIN_LED1 26
-#define PIN_LED2 27
-
 static void initialise_gpio(void) {
-	digitalWrite(MAIN_POWER, HIGH); // MAIN_POWER
-	pinMode(MAIN_POWER, OUTPUT);
-	digitalWrite(PIN_LED1, LOW); // PIN_LED1
-	pinMode(PIN_LED1, OUTPUT);
-	digitalWrite(PIN_LED2, LOW); // PIN_LED2
-	pinMode(PIN_LED2, OUTPUT);
+    gpio_config_t io_conf;
+    io_conf.intr_type = GPIO_PIN_INTR_DISABLE; //disable interrupt
+    io_conf.mode = GPIO_MODE_OUTPUT; //set as output mode
+    io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_MASK; //bit mask of the pins
+    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE; //disable pull-down mode
+    io_conf.pull_up_en = GPIO_PULLUP_DISABLE;   //disable pull-up mode
+    gpio_config(&io_conf); //configure GPIO with the given settings
+
+    gpio_set_level(MAIN_POWER, HIGH); // MAIN_POWER
+    gpio_set_level(PIN_LED1, LOW); // PIN_LED1
+    gpio_set_level(PIN_LED2, LOW); // PIN_LED2
 }
 
 
@@ -305,29 +318,6 @@ static int write_ssl_and_get_response( mbedtls_ssl_context *ssl, unsigned char *
     }
     while( 1 );
 }
-
-/*
-static void led_task(void *pvParameters)
-{
-	digitalWrite(PIN_LED2, HIGH); // PIN_LED2
-    vTaskDelay(1000 / portTICK_RATE_MS);
-	digitalWrite(PIN_LED2, LOW); // PIN_LED2
-
-	digitalWrite(PIN_LED1, HIGH); // PIN_LED1
-    vTaskDelay(1000 / portTICK_RATE_MS);
-	digitalWrite(PIN_LED1, LOW); // PIN_LED2
-
-	digitalWrite(MAIN_POWER, HIGH); // MAIN_POWER
-	for(int countdown = 5; countdown >= 0; countdown--) {
-		if(countdown%10==0) {
-			ESP_LOGI(TAG, "%d...", countdown);
-		}
-		vTaskDelay(1000 / portTICK_RATE_MS);
-	}
-	digitalWrite(MAIN_POWER, LOW); // MAIN_POWER
-	ESP_LOGI(TAG, "Starting again!");
-}
-*/
 
 static void smtps_task(void *pvParameters)
 {
@@ -588,11 +578,11 @@ static void smtps_task(void *pvParameters)
 
 	    ESP_LOGI(TAG, "  > Write content to server:" );
 
-	    len = sprintf( (char *) msgbuf, "From: %s\r\nSubject: Help Me Please!\r\n\r\n"
-		    "This could be the Text you send"
+	    len = sprintf( (char *) msgbuf, "From: %s\r\nSubject: Intruder Detected!\r\n\r\n"
+		    "This could be the Text you send "
 		    "for the ESP32 TLS mail client example.\r\n"
 		    "\r\n"
-		    "Sample DIY Emergency Button", SMTPS_MAIL_FROM );
+		    "Sample DIY Radar Intrusion Detector", SMTPS_MAIL_FROM );
 	    ret = write_ssl_data( &ssl, msgbuf, len );
 
 	    len = sprintf( (char *) msgbuf, "\r\n.\r\n");
@@ -612,12 +602,12 @@ static void smtps_task(void *pvParameters)
         mbedtls_net_free(&server_fd);
 
         if(ret != 0) {
-        	digitalWrite(PIN_LED2, HIGH); // PIN_LED2
+        	gpio_set_level(PIN_LED2, HIGH); // PIN_LED2
 
             mbedtls_strerror(ret, buf, 100);
             ESP_LOGE(TAG, "Last error was: -0x%x - %s", -ret, buf);
         } else {
-        	digitalWrite(PIN_LED1, HIGH); // PIN_LED1
+        	gpio_set_level(PIN_LED1, HIGH); // PIN_LED1
         }
 
         for(int countdown = 600; countdown >= 0; countdown--) {
@@ -626,7 +616,7 @@ static void smtps_task(void *pvParameters)
         	}
             vTaskDelay(1000 / portTICK_RATE_MS);
         }
-    	digitalWrite(MAIN_POWER, LOW); // MAIN_POWER
+        gpio_set_level(MAIN_POWER, LOW); // MAIN_POWER
         vTaskDelay(1000 / portTICK_RATE_MS);
         ESP_LOGI(TAG, "Brown out, not starting again!");
     }

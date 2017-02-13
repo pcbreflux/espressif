@@ -7,4 +7,3 @@
 # please read the ESP-IDF documents if you need to do this.
 #
 
-include $(IDF_PATH)/make/component_common.mk
