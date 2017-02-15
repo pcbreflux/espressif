@@ -37,6 +37,8 @@
 #include "lwip/netdb.h"
 #include "lwip/dns.h"
 
+#include "mbedtls/platform.h"
+#include "mbedtls/base64.h"
 #include "mbedtls/net.h"
 #include "mbedtls/debug.h"
 #include "mbedtls/ssl.h"
@@ -45,8 +47,7 @@
 #include "mbedtls/error.h"
 #include "mbedtls/certs.h"
 
-#include "esp32-hal.h"
-#include "esp32-hal-spi.h"
+#include "driver/spi_master.h"
 
 /* The examples use simple WiFi configuration that you can set via
    'make menuconfig'.
@@ -72,6 +73,24 @@ const int CONNECTED_BIT = BIT0;
 
 static const char *TAG = "example";
 
+//#define MAX6675_MISO 19
+//#define MAX6675_SCK 18
+//#define MAX6675_CS 5
+//#define MAX6675_SPI HOST VSPI_HOST
+#define MAX6675_MISO 12
+#define MAX6675_SCK 14
+#define MAX6675_CS 15
+#define MAX6675_SPI_HOST HSPI_HOST
+#define GPIO_OUTPUT_PIN_MASK  ((1<<MAX6675_CS))
+
+#ifndef HIGH
+    #define HIGH 1
+#endif
+#ifndef LOW
+    #define LOW 0
+#endif
+
+static spi_device_handle_t spi_handle; // SPI handle.
 
 /* Root cert for howsmyssl.com, found in cert.c */
 extern const char *server_root_cert;
@@ -161,49 +180,103 @@ static void initialise_wifi(void)
     ESP_ERROR_CHECK( esp_wifi_start() );
 }
 
-#define MAX6675_MISO 19
-#define MAX6675_SCK 18
-#define MAX6675_CS 5
+static void init_gpio() {
+	gpio_config_t io_conf;
+
+    io_conf.intr_type = GPIO_PIN_INTR_DISABLE; //disable interrupt
+    io_conf.mode = GPIO_MODE_OUTPUT; //set as output mode
+    io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_MASK; //bit mask of the pins
+    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE; //disable pull-down mode
+    io_conf.pull_up_en = GPIO_PULLUP_DISABLE;   //disable pull-up mode
+    ESP_LOGD(TAG, "gpio_config");
+    gpio_config(&io_conf); //configure GPIO with the given settings
+
+}
 
 uint16_t readMax6675() {
-	spi_t * _spi;
-	uint16_t data,rawtemp,temp;
+	uint16_t data,rawtemp,temp=0;
+    spi_bus_config_t bus_config;
+	spi_device_interface_config_t dev_config;
+	spi_transaction_t trans_word;
 
-    ESP_LOGI(TAG, "readMax6675 start");
-	digitalWrite(MAX6675_MISO, HIGH); // MAX6675_CS
-	pinMode(MAX6675_MISO, OUTPUT);
-	digitalWrite(MAX6675_SCK, HIGH); // MAX6675_CS
-	pinMode(MAX6675_SCK, OUTPUT);
-	digitalWrite(MAX6675_CS, HIGH); // MAX6675_CS
-	pinMode(MAX6675_CS, OUTPUT);
+	ESP_LOGD(TAG, "readMax6675 start");
 
-	//ESP_LOGI(TAG, "readMax6675 spiStartBus");
-    _spi = spiStartBus(VSPI,SPI_CLOCK_DIV8, SPI_MODE0, SPI_MSBFIRST);
+    gpio_set_level(MAX6675_CS, HIGH); // MAX6675_CS
+	bus_config.sclk_io_num   = MAX6675_SCK; // CLK
+	bus_config.mosi_io_num   = -1; // MOSI not used
+	bus_config.miso_io_num   = MAX6675_MISO; // MISO
+	bus_config.quadwp_io_num = -1; // not used
+	bus_config.quadhd_io_num = -1; // not used
+    ESP_LOGD(TAG, "spi_bus_initialize");
+	ESP_ERROR_CHECK(spi_bus_initialize(MAX6675_SPI_HOST, &bus_config, 2));
 
-    //ESP_LOGI(TAG, "readMax6675 spiAttach");
-    spiAttachSCK(_spi, MAX6675_SCK);
-    spiAttachMISO(_spi, MAX6675_MISO);
-    spiAttachMOSI(_spi, -1);
+	dev_config.address_bits     = 0;
+	dev_config.command_bits     = 0;
+	dev_config.dummy_bits       = 0;
+	dev_config.mode             = 0; // SPI_MODE0
+	dev_config.duty_cycle_pos   = 0;
+	dev_config.cs_ena_posttrans = 0;
+	dev_config.cs_ena_pretrans  = 0;
+	//dev_config.clock_speed_hz   = 2000000;  // 2 MHz
+	dev_config.clock_speed_hz   = 10000;  // 10 kHz
+	dev_config.spics_io_num     = -1; // CS External
+	dev_config.flags            = 0; // SPI_MSBFIRST
+	dev_config.queue_size       = 100;
+	dev_config.pre_cb           = NULL;
+	dev_config.post_cb          = NULL;
+    ESP_LOGD(TAG, "spi_bus_add_device");
+	ESP_ERROR_CHECK(spi_bus_add_device(MAX6675_SPI_HOST, &dev_config, &spi_handle));
 
-    digitalWrite(MAX6675_CS, LOW); // MAX6675_CS prepare
-    vTaskDelay(500 / portTICK_RATE_MS);
 
-    spiWaitReady(_spi);
-	//ESP_LOGI(TAG, "readMax6675 spiWriteWord");
-    spiWriteWord(_spi, 0x0000);
-	//ESP_LOGI(TAG, "readMax6675 spiReadWord");
-    rawtemp=spiReadWord(_spi);
-    digitalWrite(MAX6675_CS, HIGH); // MAX6675_CS prepare
+    ESP_LOGD(TAG, "MAX6675_CS prepare");
+    gpio_set_level(MAX6675_CS, LOW); // MAX6675_CS prepare
+    vTaskDelay(500 / portTICK_RATE_MS);  // see MAX6675 datasheet
 
-	ESP_LOGI(TAG, "readMax6675 spiReadWord=%x",rawtemp);
-    temp = (rawtemp>>3)*25;
+    rawtemp = 0x000;
+    data = 0x000;  // write dummy
+
+	trans_word.address   = 0;
+	trans_word.command   = 0;
+	trans_word.flags     = 0;
+	trans_word.length    = 8 * 2; // Total data length, in bits NOT number of bytes.
+	trans_word.rxlength  = 0; // (0 defaults this to the value of ``length``)
+	trans_word.tx_buffer = &data;
+	trans_word.rx_buffer = &rawtemp;
+    ESP_LOGD(TAG, "spi_device_transmit");
+	ESP_ERROR_CHECK(spi_device_transmit(spi_handle, &trans_word));
+
+	gpio_set_level(MAX6675_CS, HIGH); // MAX6675_CS prepare
+
+    temp = ((((rawtemp & 0x00FF) << 8) | ((rawtemp & 0xFF00) >> 8))>>3)*25;
+   // temp = ((rawtemp)>>3)*25;
+	ESP_LOGI(TAG, "readMax6675 spiReadWord=%x temp=%d.%d",rawtemp,temp/100,temp%100);
+
+    ESP_LOGD(TAG, "spi_bus_remove_device");
+    ESP_ERROR_CHECK(spi_bus_remove_device(spi_handle));
+    ESP_LOGD(TAG, "spi_bus_free");
+    ESP_ERROR_CHECK(spi_bus_free(MAX6675_SPI_HOST));
 
     return temp;
 
 }
 
-static void https_get_task(void *pvParameters)
-{
+/*
+static void temp_get_task(void *pvParameters) {
+    uint16_t temp;
+
+    while(1) {
+		temp=readMax6675();
+		// ESP_LOGI(TAG, "temp=%d.%d",temp/100,temp%100);
+
+		vTaskDelay(5000 / portTICK_RATE_MS);
+		ESP_LOGD(TAG, "Starting again!");
+    }
+
+    vTaskDelete(NULL);
+}
+*/
+
+static void https_get_task(void *pvParameters) {
     char buf[512];
     int ret, flags, len;
 
@@ -409,10 +482,11 @@ static void https_get_task(void *pvParameters)
     }
 }
 
-void app_main()
-{
+void app_main() {
     nvs_flash_init();
-    system_init();
     initialise_wifi();
-    xTaskCreate(&https_get_task, "https_get_task", 8192, NULL, 5, NULL);
+    init_gpio();
+
+	//xTaskCreate(&temp_get_task, "temp_get_task", 8192, NULL, 5, NULL);
+	xTaskCreate(&https_get_task, "https_get_task", 8192, NULL, 5, NULL);
 }

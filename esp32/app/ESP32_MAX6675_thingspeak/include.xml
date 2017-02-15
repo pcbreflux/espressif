@@ -11,7 +11,7 @@
 
 </language>
 <language name="GNU C">
-<includepath workspace_path="true">/esp32_ble_app_eddystone/build/include</includepath>
+<includepath workspace_path="true">/ESP32_MAX6675_thingspeak/build/include</includepath>
 <includepath>${IDF_PATH}/components/esp32/include</includepath>
 <includepath>${IDF_PATH}/components/freertos/include</includepath>
 <includepath>${IDF_PATH}/components/log/include</includepath>
@@ -19,10 +19,16 @@
 <includepath>${IDF_PATH}/components/nvs_flash/include</includepath>
 <includepath>${IDF_PATH}/components/driver/include</includepath>
 <includepath>${IDF_PATH}/components/spi_flash/include</includepath>
+<includepath>${IDF_PATH}/components/lwip/include/lwip/</includepath>
 <includepath>${IDF_PATH}/components/esp32</includepath>
 <includepath>${IDF_PATH}/components/bt/include</includepath>
+<includepath>${IDF_PATH}/components/bt/bluedroid/include</includepath>
+<includepath>${IDF_PATH}/components/bt/bluedroid/device/include</includepath>
+<includepath>${IDF_PATH}/components/bt/bluedroid/stack/include</includepath>
+<includepath>${IDF_PATH}/components/bt/bluedroid/bta/include</includepath>
+<includepath>${IDF_PATH}/components/bt/bluedroid/api/include</includepath>
 <includepath>${IDF_PATH}/../xtensa-esp32-elf/xtensa-esp32-elf/include</includepath>
-<includepath>${IDF_PATH}/../xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/4.8.5/include</includepath>
+<includepath>${IDF_PATH}/../xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/5.2.0/include</includepath>
 
 </language>
 </section>
