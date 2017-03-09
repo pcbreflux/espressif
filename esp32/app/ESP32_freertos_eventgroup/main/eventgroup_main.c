@@ -59,11 +59,11 @@ void tx_task1(void *arg) {
 void tx_task2(void *arg) {
 	uint32_t txpos=0;
 
-	color_printf(COLOR_PRINT_CYAN,"tx_task2");
+	color_printf(COLOR_PRINT_CYAN,"\ttx_task2");
 
 	while (1) {
-		color_printf(COLOR_PRINT_CYAN,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
-		color_printf(COLOR_PRINT_CYAN,"tx_task2 notify %d",txpos);
+		color_printf(COLOR_PRINT_CYAN,"\tfree DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+		color_printf(COLOR_PRINT_CYAN,"\ttx_task2 notify %d",txpos);
 		xEventGroupSetBits(demo_eventgroup, TX2_BIT);
 		vTaskDelay(7000 / portTICK_RATE_MS); // delay 7s
 		txpos++;
@@ -75,17 +75,17 @@ void rx_task(void *arg) {
 	uint32_t rxpos=0;
 	EventBits_t bits;
 
-	color_printf(COLOR_PRINT_GREEN,"rx_task");
+	color_printf(COLOR_PRINT_GREEN,"\t\trx_task");
 
 	while (1) {
-		color_printf(COLOR_PRINT_GREEN,"rx_task eventgroup yield");
+		color_printf(COLOR_PRINT_GREEN,"\t\trx_task eventgroup yield");
 		// read Bits and clear
 		bits=xEventGroupWaitBits(demo_eventgroup, TX1_BIT|TX2_BIT,pdTRUE, pdFALSE, 60000 / portTICK_RATE_MS); // max wait 60s
 		if(bits==0) {  // xWaitForAllBits == pdFALSE, so we wait for TX1_BIT or TX2_BIT so 0 is timeout
-			color_printf(COLOR_PRINT_RED,"fail to receive eventgroup value");
+			color_printf(COLOR_PRINT_RED,"\t\tfail to receive eventgroup value");
 		} else {
-			color_printf(COLOR_PRINT_GREEN,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
-			color_printf(COLOR_PRINT_GREEN,"rx_task get eventgroup from %s (%d) %d",bits==TX1_BIT?"task 1":(bits==TX2_BIT?"task 2":"both tasks"),bits,rxpos);
+			color_printf(COLOR_PRINT_GREEN,"\t\tfree DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+			color_printf(COLOR_PRINT_GREEN,"\t\trx_task get eventgroup from %s (%d) %d",bits==TX1_BIT?"task 1":(bits==TX2_BIT?"task 2":"both tasks"),bits,rxpos);
 		}
 		rxpos++;
 	}
@@ -95,17 +95,17 @@ void rx_sync_task(void *arg) {
 	uint32_t rxpos=0;
 	EventBits_t bits;
 
-	color_printf(COLOR_PRINT_GREEN,"rx_task");
+	color_printf(COLOR_PRINT_GREEN,"\t\trx_sync_task");
 
 	while (1) {
-		color_printf(COLOR_PRINT_GREEN,"rx_task eventgroup yield");
+		color_printf(COLOR_PRINT_GREEN,"\t\trx_sync_task eventgroup yield");
 		// read Bits and clear
 		bits=xEventGroupWaitBits(demo_eventgroup, TX1_BIT|TX2_BIT,pdTRUE, pdTRUE, 60000 / portTICK_RATE_MS); // max wait 60s
 		if(bits!=(TX1_BIT|TX2_BIT)) {  // xWaitForAllBits == pdTRUE, so we wait for TX1_BIT and TX2_BIT so all other is timeout
-			color_printf(COLOR_PRINT_RED,"fail to receive eventgroup value");
+			color_printf(COLOR_PRINT_RED,"\t\tfail to receive eventgroup value");
 		} else {
-			color_printf(COLOR_PRINT_GREEN,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
-			color_printf(COLOR_PRINT_GREEN,"rx_task get eventgroup from %s (%d) %d",bits==TX1_BIT?"task 1":(bits==TX2_BIT?"task 2":"both tasks"),bits,rxpos);
+			color_printf(COLOR_PRINT_GREEN,"\t\tfree DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+			color_printf(COLOR_PRINT_GREEN,"\t\trx_sync_task get eventgroup from %s (%d) %d",bits==TX1_BIT?"task 1":(bits==TX2_BIT?"task 2":"both tasks"),bits,rxpos);
 		}
 		rxpos++;
 	}

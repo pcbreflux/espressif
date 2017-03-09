@@ -47,18 +47,18 @@ void groupsync_task1(void *arg) {
 	uint32_t syncpos=0;
 	EventBits_t bits;
 
-	color_printf(COLOR_PRINT_BLUE,"groupsync_task1");
+	color_printf(COLOR_PRINT_BLUE,"\tgroupsync_task1");
 
 	while (1) {
 		vTaskDelay(5000 / portTICK_RATE_MS); // delay 5s
-		color_printf(COLOR_PRINT_BLUE,"groupsync_task1 eventgroup synct yield");
+		color_printf(COLOR_PRINT_BLUE,"\tgroupsync_task1 eventgroup synct yield");
 		// read Bits and clear
 		bits=xEventGroupSync(demo_eventgroup, GROUPSYNC1_BIT, ALL_SYNC_BITS, 60000 / portTICK_RATE_MS); // max wait 60s
 		if(bits!=ALL_SYNC_BITS) {  // xWaitForAllBits == pdTRUE, so we wait for TX1_BIT and TX2_BIT so all other is timeout
-			color_printf(COLOR_PRINT_RED,"fail to receive synct eventgroup value");
+			color_printf(COLOR_PRINT_RED,"\tfail to receive synct eventgroup value");
 		} else {
-			color_printf(COLOR_PRINT_BLUE,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
-			color_printf(COLOR_PRINT_BLUE,"groupsync_task1 get sync eventgroup from all tasks %d",syncpos);
+			color_printf(COLOR_PRINT_BLUE,"\tfree DRAM %u IRAM %u HWM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT),uxTaskGetStackHighWaterMark(NULL));
+			color_printf(COLOR_PRINT_BLUE,"\tgroupsync_task1 get sync eventgroup from all tasks %d",syncpos);
 		}
 		syncpos++;
 	}
@@ -68,18 +68,18 @@ void groupsync_task2(void *arg) {
 	uint32_t syncpos=0;
 	EventBits_t bits;
 
-	color_printf(COLOR_PRINT_CYAN,"groupsync_task2");
+	color_printf(COLOR_PRINT_CYAN,"\t\tgroupsync_task2");
 
 	while (1) {
 		vTaskDelay(7000 / portTICK_RATE_MS); // delay 7s
-		color_printf(COLOR_PRINT_CYAN,"groupsync_task2 eventgroup synct yield");
+		color_printf(COLOR_PRINT_CYAN,"\t\tgroupsync_task2 eventgroup synct yield");
 		// read Bits and clear
 		bits=xEventGroupSync(demo_eventgroup, GROUPSYNC2_BIT, ALL_SYNC_BITS, 60000 / portTICK_RATE_MS); // max wait 60s
 		if(bits!=ALL_SYNC_BITS) {  // xWaitForAllBits == pdTRUE, so we wait for TX1_BIT and TX2_BIT so all other is timeout
-			color_printf(COLOR_PRINT_RED,"fail to receive synct eventgroup value");
+			color_printf(COLOR_PRINT_RED,"\t\tfail to receive synct eventgroup value");
 		} else {
-			color_printf(COLOR_PRINT_CYAN,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
-			color_printf(COLOR_PRINT_CYAN,"groupsync_task2 get sync eventgroup from all tasks %d",syncpos);
+			color_printf(COLOR_PRINT_CYAN,"\t\tfree DRAM %u IRAM %u HWM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT),uxTaskGetStackHighWaterMark(NULL));
+			color_printf(COLOR_PRINT_CYAN,"\t\tgroupsync_task2 get sync eventgroup from all tasks %d",syncpos);
 		}
 		syncpos++;
 	}
@@ -89,18 +89,18 @@ void groupsync_task3(void *arg) {
 	uint32_t syncpos=0;
 	EventBits_t bits;
 
-	color_printf(COLOR_PRINT_GREEN,"groupsync_task3");
+	color_printf(COLOR_PRINT_GREEN,"\t\t\tgroupsync_task3");
 
 	while (1) {
 		vTaskDelay(10000 / portTICK_RATE_MS); // delay 10s
-		color_printf(COLOR_PRINT_GREEN,"groupsync_task3 eventgroup synct yield");
+		color_printf(COLOR_PRINT_GREEN,"\t\t\tgroupsync_task3 eventgroup synct yield");
 		// read Bits and clear
 		bits=xEventGroupSync(demo_eventgroup, GROUPSYNC3_BIT, ALL_SYNC_BITS, 60000 / portTICK_RATE_MS); // max wait 60s
 		if(bits!=ALL_SYNC_BITS) {  // xWaitForAllBits == pdTRUE, so we wait for TX1_BIT and TX2_BIT so all other is timeout
-			color_printf(COLOR_PRINT_RED,"fail to receive synct eventgroup value");
+			color_printf(COLOR_PRINT_RED,"\t\t\tfail to receive synct eventgroup value");
 		} else {
-			color_printf(COLOR_PRINT_GREEN,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
-			color_printf(COLOR_PRINT_GREEN,"groupsync_task3 get sync eventgroup from all tasks %d",syncpos);
+			color_printf(COLOR_PRINT_GREEN,"\t\t\tfree DRAM %u IRAM %u HWM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT),uxTaskGetStackHighWaterMark(NULL));
+			color_printf(COLOR_PRINT_GREEN,"\t\t\tgroupsync_task3 get sync eventgroup from all tasks %d",syncpos);
 		}
 		syncpos++;
 	}

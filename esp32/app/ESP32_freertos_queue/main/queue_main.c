@@ -57,13 +57,13 @@ void tx_task1(void *arg) {
 void tx_task2(void *arg) {
 	uint32_t txpos=0;
 
-	color_printf(COLOR_PRINT_CYAN,"tx_task2");
+	color_printf(COLOR_PRINT_CYAN,"\ttx_task2");
 
 	while (1) {
-		color_printf(COLOR_PRINT_CYAN,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
-		color_printf(COLOR_PRINT_CYAN,"tx_task2 notify %d",txpos);
+		color_printf(COLOR_PRINT_CYAN,"\tfree DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+		color_printf(COLOR_PRINT_CYAN,"\ttx_task2 notify %d",txpos);
 		if(xQueueSendToBack(demo_queue,&txpos,1000/portTICK_RATE_MS)!=pdTRUE) {
-			color_printf(COLOR_PRINT_RED,"tx_task2 fail to queue value %d",txpos);
+			color_printf(COLOR_PRINT_RED,"\ttx_task2 fail to queue value %d",txpos);
 		}
 		vTaskDelay(7000 / portTICK_RATE_MS); // delay 7s
 		txpos++;
@@ -74,15 +74,18 @@ void tx_task2(void *arg) {
 void rx_task(void *arg) {
 	uint32_t rxpos;
 
-	color_printf(COLOR_PRINT_GREEN,"rx_task");
+	color_printf(COLOR_PRINT_GREEN,"\t\trx_task");
 
 	while (1) {
-		color_printf(COLOR_PRINT_GREEN,"rx_task queue yield");
+		color_printf(COLOR_PRINT_GREEN,"\t\trx_task queue yield");
 		if(xQueueReceive(demo_queue,&rxpos,60000/portTICK_RATE_MS)!=pdTRUE) {  // max wait 60s
-			color_printf(COLOR_PRINT_RED,"fail to receive queued value");
+			color_printf(COLOR_PRINT_RED,"\t\tfail to receive queued value");
 		} else {
-			color_printf(COLOR_PRINT_GREEN,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
-			color_printf(COLOR_PRINT_GREEN,"rx_task get queued value %d",rxpos);
+			color_printf(COLOR_PRINT_GREEN,"\t\tfree DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+			color_printf(COLOR_PRINT_GREEN,"\t\trx_task get queued value %d",rxpos);
+		}
+		if (uxQueueMessagesWaiting(demo_queue)==0) { // no message? take a break
+		 	vTaskDelay(15000 / portTICK_RATE_MS); // delay 15s
 		}
 	}
 }
