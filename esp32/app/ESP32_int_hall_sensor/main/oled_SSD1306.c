@@ -42,14 +42,19 @@
 
 void printValue(u8g2_t *u8g2,uint32_t loop) {
  	char buf[256];
+ 	int value;
+
+ 	value = hall_sensor_read();
 
  	u8g2_ClearBuffer(u8g2);
 
 	//u8g2_SetFont(u8g2,u8g2_font_ncenB14_tr);
 	u8g2_SetFont(u8g2,u8g2_font_fur20_tr);
-	sprintf(buf,"%d",hall_sensor_read());
+	sprintf(buf,"%d",value);
 	u8g2_DrawStr(u8g2,2,22,buf);
 
+	u8g2_DrawFrame(u8g2,0,28,122,4);
+	u8g2_DrawBox(u8g2,(value/6)+44,29,4,2);
 	u8g2_SendBuffer(u8g2);
 }
 
