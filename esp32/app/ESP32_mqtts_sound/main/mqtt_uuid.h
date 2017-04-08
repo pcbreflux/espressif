@@ -1,0 +1,3 @@
+#include <stdio.h>
+
+#define MBEDTLS_WEBSOCKET_UUID "OTY0OWI0YzktY2FjNy00ZjIwLTljZGEtM2EwNTZkNmUyNTQx"
