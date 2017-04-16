@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+#
+#based on the scrip from https://github.com/egbertbouman/youtube-comment-downloader
+#
 
 import os
 import sys
