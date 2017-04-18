@@ -20,7 +20,7 @@
 #include <SPI.h>//include the SPI bus library
 #include <MFRC522.h>//include the RFID reader library
 
-#define RST_PIN         21          // Configurable, see typical pin layout above
+#define RST_PIN         22          // Configurable, see typical pin layout above
 #define SS_PIN          5         // Configurable, see typical pin layout above
 MFRC522 mfrc522(SS_PIN, RST_PIN);        // instatiate a MFRC522 reader object.
 MFRC522::MIFARE_Key key;//create a MIFARE_Key struct named 'key', which will hold the card information
