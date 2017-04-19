@@ -40,6 +40,7 @@
 #define MESSAGE_SIZE 1024
 #define MESSAGE_HASH_SIZE 48
 #define SIGN_SIZE 64
+#define KEY_ROUND_SIZE 256
 
 static int rng_func(uint8_t *dest, unsigned size) {
 
@@ -96,12 +97,13 @@ void ecc_task(void *pvParameters) {
 	uint8_t decrypt_message[MESSAGE_SIZE]; // public message
 	uint8_t message_hash[MESSAGE_HASH_SIZE]; // sha256 hash of message
 	uint8_t signature[SIGN_SIZE]; // signature of message hash
+	uint32_t key_round[KEY_ROUND_SIZE]; // AES round keys
     unsigned char nonce[8];
     unsigned char nonce_counter[16];
     unsigned char stream_block[16];
 	int ret;
 	esp_aes_context ctx;
-	esp_aes_context *p_ctx=&ctx;
+	//esp_aes_context *p_ctx=&ctx;
 	size_t nc_off;
 
     p_curve = uECC_secp256r1();
@@ -112,7 +114,9 @@ void ecc_task(void *pvParameters) {
 
     int pubksize;
 
-   	esp_aes_init(p_ctx);
+   	esp_aes_init(&ctx);
+   	ctx.nr=KEY_ROUND_SIZE;
+   	ctx.rk=key_round;
 
 
 	while (1) {
@@ -240,7 +244,7 @@ void ecc_task(void *pvParameters) {
 	   	nc_off=0; // offset in the current stream_block
 	   	bzero(nonce_counter,16);
 	   	memcpy(nonce_counter,nonce,8);  // fill nonce with prepared random, couter stay 0
-		esp_aes_crypt_ctr(p_ctx,MESSAGE_SIZE,&nc_off,nonce_counter,stream_block,message,encrypt_message);
+		esp_aes_crypt_ctr(&ctx,MESSAGE_SIZE,&nc_off,nonce_counter,stream_block,message,encrypt_message);
 
 //	   	ESP_LOGI(TAG, "---encrypt_message---");
 //		printf("encrypt_message = {\n");
@@ -255,7 +259,7 @@ void ecc_task(void *pvParameters) {
 	   	nc_off=0; // offset in the current stream_block
 	   	bzero(nonce_counter,16);
 	   	memcpy(nonce_counter,nonce,8);  // fill nonce with prepared random, couter stay 0
-		esp_aes_crypt_ctr(p_ctx,MESSAGE_SIZE,&nc_off,nonce_counter,stream_block,encrypt_message,decrypt_message);
+		esp_aes_crypt_ctr(&ctx,MESSAGE_SIZE,&nc_off,nonce_counter,stream_block,encrypt_message,decrypt_message);
 
 //	   	ESP_LOGI(TAG, "---decrypt_message---");
 //		printf("decrypt_message = {\n");

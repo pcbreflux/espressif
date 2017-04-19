@@ -32,7 +32,7 @@
 void app_main() {
 
     ESP_LOGI(TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
-    xTaskCreate(ecc_task, "gpio_task", 8192, NULL, 5, NULL);
+    xTaskCreate(ecc_task, "gpio_task", 12288, NULL, 5, NULL);
 
 }
 
