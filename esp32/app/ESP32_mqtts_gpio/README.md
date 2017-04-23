@@ -1,6 +1,8 @@
 # MQTT Secure via HTTPS Websocket Example
 
 Uses an mbedTLS socket to make a very simple HTTPS request over a secure connection, including verifying the server TLS certificate.
+You have to use a seperate MQTT Broker. Setting up your own like mosquitto (with SSL/TLS) maybe on raspberian or ubuntu or use one on the Cloud like iot.eclipse.org (even encpryted, this is public!), 
+test.mosquitto.org (also public) or coudmqtt.com (your private one) or others. 
 
 ## Example MQTT
 * Send Topic esp32/bulb1/0 Message 50 to switch first GPIO (-> 5) in the List (5,18,23,19,22) to 50& duty cycle -> 50% on / 50% of frequency 1kHz
