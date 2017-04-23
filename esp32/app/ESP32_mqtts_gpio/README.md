@@ -2,6 +2,11 @@
 
 Uses an mbedTLS socket to make a very simple HTTPS request over a secure connection, including verifying the server TLS certificate.
 
+##Example MQTT
+* Send Topic esp32/bulb1/0 Message 50 to switch first GPIO (-> 5) in the List (5,18,23,19,22) to 50& duty cycle -> 50% on / 50% of frequency 1kHz
+* Send Topic esp32/bulb1/1 Message 0 to switch first GPIO 18 OFF
+* Send Topic esp32/bulb1/3 Message 100 to switch first GPIO 19 ON (-> 100%)
+
 ## esp-idf used
 * commit fd3ef4cdfe1ce747ef4757205f4bb797b099c9d9
 * Merge: 94a61389 52c378b4
