@@ -27,7 +27,7 @@ Uses an mbedTLS socket to make a very simple HTTPS request over a secure connect
   * `//#define MQTT_WEBSOCKET 0  // 0=no 1=yes`
   * `#define MQTT_WEBSOCKET 1  // 0=no 1=yes`
 
-(Hint: today mbed_ssl without WebSockets is unstable, i.e. reconnecting is needed some times, searching for reasons...)
+3. (Hint: today mbed_ssl without WebSockets is unstable, i.e. reconnecting is needed some times, searching for reasons...)
 
 ## INSTALL
 * `make menuconfig`
