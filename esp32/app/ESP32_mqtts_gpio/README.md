@@ -18,8 +18,8 @@ Uses an mbedTLS socket to make a very simple HTTPS request over a secure connect
 * include include.xml to C-Paths
 
 ## PREPARE
-* change main/cert.c -> server_root_cert
-* change main/mqtt_subscribe_main.c
+1. change main/cert.c -> server_root_cert
+2. change main/mqtt_subscribe_main.c
 ..* `#define MQTT_SERVER "your server"`
 ..* `#define MQTT_USER "your user"`
 ..* `#define MQTT_PASS "your password"`
