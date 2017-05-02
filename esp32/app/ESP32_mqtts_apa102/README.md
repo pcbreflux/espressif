@@ -1,13 +1,13 @@
-# MQTT Secure via HTTPS Websocket Example
+# MQTT Secure via HTTPS Websocket Example and APA102 RGB LED (strip)
 
 Uses an mbedTLS socket to make a very simple HTTPS request over a secure connection, including verifying the server TLS certificate.
 You have to use a seperate MQTT Broker. Setting up your own like mosquitto (with SSL/TLS) maybe on raspberian or ubuntu or use one on the Cloud like iot.eclipse.org (even encpryted, this is public!), 
 test.mosquitto.org (also public) or coudmqtt.com (your private one) or others. 
 
 ## Example MQTT
-* Send Topic esp32/bulb1/0 Message 50 to switch first GPIO (-> 5) in the List (5,18,23,19,22) to 50& duty cycle -> 50% on / 50% of frequency 1kHz
-* Send Topic esp32/bulb1/1 Message 0 to switch first GPIO 18 OFF
-* Send Topic esp32/bulb1/3 Message 100 to switch first GPIO 19 ON (-> 100%)
+* Send Topic esp32/dev0001/color #FF00FF send Color Red=255, Green=0, Blue=255
+* Send Topic esp32/dev0001/color t Start Test pattern
+* Send Topic esp32/dev0002/color #123456 Message for a second ESP32 ...
 
 ## esp-idf used
 * commit fd3ef4cdfe1ce747ef4757205f4bb797b099c9d9
