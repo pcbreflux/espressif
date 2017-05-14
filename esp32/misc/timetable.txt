@@ -1,0 +1,8 @@
+005 06.05. ESP32 #34: Mosquitto + SSL/TLS, openHAB2, MQTT Dash + ESP32 Giveaway
+006 12.05. ESP32 #35: Smart LED Prototype 2, openHAB2, MQTT Dash + ESP32 Giveaway https://youtu.be/pXqGaMKl8nA
+007 16.05. ESP32 #36: Play MP3 with DFPlayer Mini + ESP32 Giveaway https://youtu.be/kq2RLz65_w0
+008 22.05. ESP32 #37: Ardiuno - Eclipse Crossover + ESP32 Giveaway https://youtu.be/XgAIaVV39tk
+
+
+
+
