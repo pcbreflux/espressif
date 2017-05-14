@@ -38,5 +38,8 @@ test.mosquitto.org (also public) or coudmqtt.com (your private one) or others.
 * `make monitor`
 
 
+![advert](setup.png)
+
+
 
 

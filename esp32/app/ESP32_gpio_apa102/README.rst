@@ -15,3 +15,4 @@ INSTALL
 	make flash
 	make monitor
 
+![advert](setup.png)
