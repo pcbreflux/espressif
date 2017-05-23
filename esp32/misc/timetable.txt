@@ -1,7 +1,19 @@
-005 06.05. ESP32 #34: Mosquitto + SSL/TLS, openHAB2, MQTT Dash + ESP32 Giveaway
-006 12.05. ESP32 #35: Smart LED Prototype 2, openHAB2, MQTT Dash + ESP32 Giveaway https://youtu.be/pXqGaMKl8nA
-007 16.05. ESP32 #36: Play MP3 with DFPlayer Mini + ESP32 Giveaway https://youtu.be/kq2RLz65_w0
-008 22.05. ESP32 #37: Ardiuno - Eclipse Crossover + ESP32 Giveaway https://youtu.be/XgAIaVV39tk
+
+001 06.04. 16.04. ESP32 #30: Switching Heavy Loads with Solid State Relays (SSR) + ESP32 Giveaway https://youtu.be/Efp-yO0J0c0
+002 08.04. 18.04. ESP32 #31: Playing Sound / MQTT Sound + ESP32 Giveaway https://youtu.be/R24SbvRsuWc
+003 12.04. 22.04. ESP32 #32: ESP32 Smart LED Prototype + ESP32 Giveaway https://youtu.be/pcefQE6Y53w
+004 18.04. 28.04. ESP32 #33: RFID Read and Write with MFRC522 Module + ESP32 Giveaway https://youtu.be/waYM37_fUsg
+005 26.04. 06.05. ESP32 #34: Mosquitto + SSL/TLS, openHAB2, MQTT Dash + ESP32 Giveaway https://youtu.be/Y-NvZe8cWOg
+006 02.05. 12.05. ESP32 #35: Smart LED Prototype 2, openHAB2, MQTT Dash + ESP32 Giveaway https://youtu.be/pXqGaMKl8nA
+007 05.05. 16.05. ESP32 #36: Play MP3 with DFPlayer Mini + ESP32 Giveaway https://youtu.be/kq2RLz65_w0
+008 10.05. 22.05. ESP32 #37: Ardiuno - Eclipse Crossover + ESP32 Giveaway https://youtu.be/XgAIaVV39tk
+009 16.05. 26.05. ESP32 #38: NeoPixel (WS2812b) Library Contest + ESP32 Giveaway https://youtu.be/5nvAmingjUA
+
+
+
+
+
+
 
 
 
