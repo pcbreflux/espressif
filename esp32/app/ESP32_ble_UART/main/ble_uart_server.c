@@ -151,7 +151,7 @@ static struct gatts_profile_inst gl_profile = {
 /* One gatt-based profile one app_id and one gatts_if, this array will store the gatts_if returned by ESP_GATTS_REG_EVT */
 static struct gatts_char_inst gl_char[GATTS_CHAR_NUM] = {
 		{
-				.char_uuid.len = ESP_UUID_LEN_128,
+				.char_uuid.len = ESP_UUID_LEN_128, // RX
 				.char_uuid.uuid.uuid128 =  { 0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x02, 0x00, 0x40, 0x6E },
 				.char_perm = ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
 				.char_property = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_NOTIFY,
@@ -170,7 +170,7 @@ static struct gatts_char_inst gl_char[GATTS_CHAR_NUM] = {
 				.descr_write_callback=descr1_write_handler
 		},
 		{
-				.char_uuid.len = ESP_UUID_LEN_128,
+				.char_uuid.len = ESP_UUID_LEN_128,  // TX
 				.char_uuid.uuid.uuid128 =  { 0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x03, 0x00, 0x40, 0x6E },
 				.char_perm = ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
 				.char_property = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_NOTIFY,
@@ -262,6 +262,24 @@ void descr2_read_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 								ESP_GATT_OK, &rsp);
 }
 
+static  uint16_t notify_conn_id = 0;
+static  esp_gatt_if_t notify_gatts_if = NULL;
+static uint8_t notify_pos=0;
+static uint8_t is_notify=0;
+
+
+void char2_notify_handle(esp_gatt_if_t gatts_if, uint16_t conn_id) {
+	if (is_notify==1) {
+		notify_pos='0';
+		for (uint32_t i=0;i<10;i++) {
+			ESP_LOGI(GATTS_TAG, "char2_notify_handle esp_ble_gatts_send_indicate\n");
+			// vTaskDelay(1000 / portTICK_RATE_MS); // delay 1s
+			esp_ble_gatts_send_indicate(gatts_if, conn_id, gl_char[1].char_handle,1,&notify_pos,false);
+			notify_pos++;
+		}
+	}
+}
+
 void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
 	ESP_LOGI(GATTS_TAG, "char1_write_handler %d\n", param->write.handle);
 
@@ -274,7 +292,10 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 		ESP_LOGI(TAG, "char1_write_handler %.*s", gl_char[0].char_val->attr_len, (char*)gl_char[0].char_val->attr_value);
 	}
 	ESP_LOGI(GATTS_TAG, "char1_write_handler esp_gatt_rsp_t\n");
+	notify_gatts_if = gatts_if;
+	notify_conn_id = param->write.conn_id;
     esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
+    char2_notify_handle(gatts_if, param->write.conn_id);
 }
 
 void char2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
@@ -314,6 +335,8 @@ void descr2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, es
 		for (uint32_t pos=0;pos<param->write.len;pos++) {
 			gl_char[1].descr_val->attr_value[pos]=param->write.value[pos];
 		}
+		is_notify = gl_char[1].descr_val->attr_value[0];
+		ESP_LOGI(GATTS_TAG, "descr1_write_handler is_notify %d\n",is_notify);
 	}
 	ESP_LOGI(GATTS_TAG, "descr2_write_handler esp_gatt_rsp_t\n");
     esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
