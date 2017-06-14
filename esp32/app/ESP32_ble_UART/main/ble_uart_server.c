@@ -41,6 +41,11 @@
 
 #define GATTS_TAG "GATTS"
 
+#define LED_PIN GPIO_NUM_22
+#define HIGH 1
+#define LOW 0
+
+
 uint8_t char1_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33};
 uint8_t char2_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33};
 uint8_t descr1_str[GATTS_CHAR_VAL_LEN_MAX] = {0x00,0x00};
@@ -295,7 +300,13 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 	notify_gatts_if = gatts_if;
 	notify_conn_id = param->write.conn_id;
     esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
-    char2_notify_handle(gatts_if, param->write.conn_id);
+    if (strncmp((const char *)gl_char[0].char_val->attr_value,"LED ON",6)==0) {
+    	gpio_set_level(LED_PIN,HIGH);
+    } else if (strncmp((const char *)gl_char[0].char_val->attr_value,"LED OFF",7)==0) {
+    	gpio_set_level(LED_PIN,LOW);
+    } else {
+    	char2_notify_handle(gatts_if, param->write.conn_id);
+    }
 }
 
 void char2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
@@ -598,6 +609,19 @@ void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
     if (event == ESP_GATTS_REG_EVT) {
         if (param->reg.status == ESP_GATT_OK) {
         	gl_profile.gatts_if = gatts_if;
+
+        	uint64_t bitmask = 0;
+        	bitmask = bitmask | (1<<LED_PIN);
+
+        	gpio_config_t gpioConfig;
+        	gpioConfig.pin_bit_mask = bitmask;
+        	gpioConfig.mode         = GPIO_MODE_OUTPUT;
+        	gpioConfig.pull_up_en   = GPIO_PULLUP_DISABLE;
+        	gpioConfig.pull_down_en = GPIO_PULLDOWN_ENABLE;
+        	gpioConfig.intr_type    = GPIO_INTR_DISABLE;
+        	gpio_config(&gpioConfig);
+
+        	gpio_set_level(LED_PIN, LOW);
         } else {
             ESP_LOGI(GATTS_TAG, "Reg app failed, app_id %04x, status %d\n",
                     param->reg.app_id, 
