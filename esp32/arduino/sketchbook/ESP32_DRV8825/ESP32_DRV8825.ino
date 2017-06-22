@@ -253,7 +253,7 @@ void setup() {
 
 }
 
-/**@brief loop single Motor driving and muliti Motor driving.
+/**@brief loop single Motor driving and muli Motor driving.
  *
  */
 void loop() {
