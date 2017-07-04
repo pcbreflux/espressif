@@ -4,8 +4,12 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "esp_system.h"
+#include "esp_log.h"
 
 #include "bt.h"
+
+#define GATTS_TAG "MAIN"
 
 #define HCI_H4_CMD_PREAMBLE_SIZE           (4)
 
@@ -239,7 +243,20 @@ void bleAdvtTask(void *pvParameters)
 
 int app_main()
 {
-    esp_bt_controller_init();
+    esp_err_t ret;
+
+    esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
+    ret = esp_bt_controller_init(&bt_cfg);
+    if (ret) {
+        ESP_LOGE(GATTS_TAG, "%s initialize controller failed\n", __func__);
+        return 1;
+    }
+
+    ret = esp_bt_controller_enable(ESP_BT_MODE_BTDM);
+    if (ret) {
+        ESP_LOGE(GATTS_TAG, "%s enable controller failed\n", __func__);
+        return 1;
+    }
     xTaskCreatePinnedToCore(&bleAdvtTask, "bleAdvtTask", 2048, NULL, 5, NULL, 0);
     return 0;
 }
