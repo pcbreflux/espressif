@@ -1,13 +1,20 @@
 
-001 06.04. 16.04. ESP32 #30: Switching Heavy Loads with Solid State Relays (SSR) + ESP32 Giveaway https://youtu.be/Efp-yO0J0c0
-002 08.04. 18.04. ESP32 #31: Playing Sound / MQTT Sound + ESP32 Giveaway https://youtu.be/R24SbvRsuWc
-003 12.04. 22.04. ESP32 #32: ESP32 Smart LED Prototype + ESP32 Giveaway https://youtu.be/pcefQE6Y53w
-004 18.04. 28.04. ESP32 #33: RFID Read and Write with MFRC522 Module + ESP32 Giveaway https://youtu.be/waYM37_fUsg
-005 26.04. 06.05. ESP32 #34: Mosquitto + SSL/TLS, openHAB2, MQTT Dash + ESP32 Giveaway https://youtu.be/Y-NvZe8cWOg
-006 02.05. 12.05. ESP32 #35: Smart LED Prototype 2, openHAB2, MQTT Dash + ESP32 Giveaway https://youtu.be/pXqGaMKl8nA
-007 05.05. 16.05. ESP32 #36: Play MP3 with DFPlayer Mini + ESP32 Giveaway https://youtu.be/kq2RLz65_w0
-008 10.05. 22.05. ESP32 #37: Ardiuno - Eclipse Crossover + ESP32 Giveaway https://youtu.be/XgAIaVV39tk
-009 16.05. 26.05. ESP32 #38: NeoPixel (WS2812b) Library Contest + ESP32 Giveaway https://youtu.be/5nvAmingjUA
+001 06.04. 16.04. ESP32 #30: Switching Heavy Loads with Solid State Relays (SSR) + ESP32 Giveaway https://youtu.be/Efp-yO0J0c0 Ton dB	Maneco Theloopmaster
+002 08.04. 18.04. ESP32 #31: Playing Sound / MQTT Sound + ESP32 Giveaway https://youtu.be/R24SbvRsuWc	stewl	R INYURU
+003 12.04. 22.04. ESP32 #32: ESP32 Smart LED Prototype + ESP32 Giveaway https://youtu.be/pcefQE6Y53w	Павел Онлайн	Goksel Uyulmaz
+004 18.04. 28.04. ESP32 #33: RFID Read and Write with MFRC522 Module + ESP32 Giveaway https://youtu.be/waYM37_fUsg	Ann O'Nymous	tushaar vishnu
+005 26.04. 06.05. ESP32 #34: Mosquitto + SSL/TLS, openHAB2, MQTT Dash + ESP32 Giveaway https://youtu.be/Y-NvZe8cWOg	Patric
+006 02.05. 12.05. ESP32 #35: Smart LED Prototype 2, openHAB2, MQTT Dash + ESP32 Giveaway https://youtu.be/pXqGaMKl8nA	Roman Valls
+007 05.05. 16.05. ESP32 #36: Play MP3 with DFPlayer Mini + ESP32 Giveaway https://youtu.be/kq2RLz65_w0	Luis Cabral
+008 10.05. 22.05. ESP32 #37: Ardiuno - Eclipse Crossover + ESP32 Giveaway https://youtu.be/XgAIaVV39tk	Gustavo Reynaga
+009 16.05. 26.05. ESP32 #38: NeoPixel (WS2812b) Library Contest + ESP32 Giveaway https://youtu.be/5nvAmingjUA	TheLightOrganMan
+010 24.05. 04.06. ESP32 #39: Bluetooth Server Tutorial and Code Walk + ESP32 Giveaway https://youtu.be/FvIywveUVZw
+011 01.06. 12.06. ESP32 #40: IR Remote (AX-1838HS) + ESP32 Giveaway https://youtu.be/7Y_fmZ7pKxw Rahim Khan
+012 09.06. 20.06. ESP32 #41: Touch Sensor (300 Neo Pixel Skin Detector) + ESP32 Giveaway https://youtu.be/-sexrWRgw4s Adrian Čosić
+013 16.06. 28.06. ESP32 #42: Arduino Multitasking (WS2812 octo tasking) + ESP32 Giveaway https://youtu.be/i8ffEbyU-7w vijayenthiran subramaniam
+014 22.06. 03.07. ESP32 #43: Arduino Multitasking (DRV8825 Stepstick Steppermotor Driver) + ESP32 Giveaway https://youtu.be/1kx5Ofavfbc krunal patel
+015 29.06. 10.07. ESP32 #44: Arduino AP + Webserver + File Upload + ESP32 Giveaway https://youtu.be/_mJL2LoxhQQ
+
 
 
 
