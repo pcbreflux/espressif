@@ -8,11 +8,11 @@ Preparation
 	check $PATH
 	check $IDF_PATH
 
-Config steps:
+Config steps on Ubuntu Linux:
     1. edit include.xml
-       change ESP32_eclipse_template to yout PATH
+       change ESP32_eclipse_template to your PATH
     2. start eclipse
-    3. config make-tagets for (if exist copy them from previous project)
+    3. config make-targets for (if exist copy them from previous project)
               menuconfig
               all (Target "-j8 all")
               clear
