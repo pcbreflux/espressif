@@ -1,36 +1,19 @@
-ESP-IDF Eclipse Template demo
-========================
+BLE Notify I2C INA219 demo
+===========================
 
-This is the demo to use Eclipse.
+esp-idf used
+	commit 1e0710f1b24429a316c9c34732aa17bd3f189421
+	Date:   Fri May 12 18:23:20 2017 +0800
 
-Preparation
-	install esp-idf (https://github.com/espressif/esp-idf)
-	check $PATH
-	check $IDF_PATH
+eclipse
+	include include.xml to C and C++ Paths
 
-Config steps:
-    1. edit include.xml
-       change ESP32_eclipse_template to yout PATH
-    2. start eclipse
-    3. config make-tagets for (if exist copy them from previous project)
-              menuconfig
-              all (Target "-j8 all")
-              clear
-              flash (Command gnome-terminal -x make)
-              monitor (Command gnome-terminal -x make)
-              flash monitor (Command gnome-terminal -x make)
-    4. import include.xml 
-             Project Explorer -> Properties -> C/C++ General -> Paths and Symbols
-		
-		Includes -> Import Serttings
-		Browse (Open File include.xml)
-		
-		-> Finish
-     5. Use Make-Targets menuconfig
-     6. Use Make-Targets all, flash and monitor
-     7. enjoy
-
-	
+INSTALL
+	make menuconfig
+	(make clean)
+	make -j8 all
+	make flash
+	make monitor
 
 
 
