@@ -1,0 +1,198 @@
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:28: warning: Compound pg_edge_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8_d_ks0108.c:60: warning: Compound u8x8_ks0108_vars is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:242: warning: Compound _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:208: warning: Compound u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:822: warning: Compound _u8sl_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:276: warning: Compound u8g2_cb_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:55: warning: Compound _pg_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:20: warning: Compound pg_point_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:313: warning: Compound u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/u8g2_esp32_hal.h:25: warning: Compound u8g2_esp32_hal_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:199: warning: Compound u8x8_tile_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:264: warning: Compound _u8g2_kerning_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:203: warning: Compound _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:285: warning: Compound u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/main.c:28: warning: Member task_test_gde0213b1(void *ignore) (function) of file main.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/main.c:29: warning: Member task_test_gdew0154t8(void *ignore) (function) of file main.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/main.c:30: warning: Member task_test_gdep015oc1(void *ignore) (function) of file main.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/main.c:31: warning: Member task_test_SSD1306(void *ignore) (function) of file main.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDE0213B1.c:32: warning: Member EPAPER_GIPO_MOSI (macro definition) of file test_GDE0213B1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDE0213B1.c:33: warning: Member EPAPER_GIPO_SCK (macro definition) of file test_GDE0213B1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDE0213B1.c:34: warning: Member EPAPER_GIPO_CS (macro definition) of file test_GDE0213B1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDE0213B1.c:35: warning: Member EPAPER_GIPO_DC (macro definition) of file test_GDE0213B1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDE0213B1.c:36: warning: Member EPAPER_GIPO_RESET (macro definition) of file test_GDE0213B1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDE0213B1.c:37: warning: Member EPAPER_GIPO_BUSY (macro definition) of file test_GDE0213B1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDE0213B1.c:51: warning: Member absrot60(int angle) (function) of file test_GDE0213B1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDE0213B1.c:59: warning: Member task_test_gde0213b1(void *ignore) (function) of file test_GDE0213B1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDE0213B1.c:40: warning: Member TAG (variable) of file test_GDE0213B1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDE0213B1.c:42: warning: Member sintab60[60] (variable) of file test_GDE0213B1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:32: warning: Member EPAPER_GIPO_MOSI (macro definition) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:33: warning: Member EPAPER_GIPO_SCK (macro definition) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:34: warning: Member EPAPER_GIPO_CS (macro definition) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:35: warning: Member EPAPER_GIPO_DC (macro definition) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:36: warning: Member EPAPER_GIPO_RESET (macro definition) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:37: warning: Member EPAPER_GIPO_BUSY (macro definition) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:100: warning: Member absrot60(int angle) (function) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:108: warning: Member task_test_gdep015oc1(void *ignore) (function) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:40: warning: Member TAG (variable) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:42: warning: Member sintab60[60] (variable) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:50: warning: Member chess_black_queen[] (variable) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:55: warning: Member bat32x16[] (variable) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:62: warning: Member queen32x64[] (variable) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEP015OC1.c:81: warning: Member queen64x32[] (variable) of file test_GDEP015OC1.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:35: warning: Member EPAPER_GIPO_MOSI (macro definition) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:36: warning: Member EPAPER_GIPO_SCK (macro definition) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:37: warning: Member EPAPER_GIPO_CS (macro definition) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:38: warning: Member EPAPER_GIPO_DC (macro definition) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:39: warning: Member EPAPER_GIPO_RESET (macro definition) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:40: warning: Member EPAPER_GIPO_BUSY (macro definition) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:92: warning: Member absrot60(int angle) (function) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:100: warning: Member task_test_gdew0154t8(void *ignore) (function) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:43: warning: Member TAG (variable) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:45: warning: Member sintab60[60] (variable) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:53: warning: Member queen32x64[] (variable) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/test_GDEW0154T8.c:72: warning: Member queen64x32[] (variable) of file test_GDEW0154T8.c is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/README.md:2: warning: explicit link request to 'ESP32' could not be resolved
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:42: warning: Member list[PG_MAX_POINTS] (variable) of class _pg_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:57: warning: Member cnt (variable) of class _pg_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:58: warning: Member is_min_y_not_flat (variable) of class _pg_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:59: warning: Member total_scan_line_cnt (variable) of class _pg_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:59: warning: Member pge[2] (variable) of class _pg_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:243: warning: Member decode_ptr (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:245: warning: Member target_x (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:246: warning: Member target_y (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:248: warning: Member x (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:249: warning: Member y (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:250: warning: Member glyph_width (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:251: warning: Member glyph_height (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:253: warning: Member decode_bit_pos (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:254: warning: Member is_transparent (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:255: warning: Member fg_color (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:256: warning: Member bg_color (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:258: warning: Member dir (variable) of class _u8g2_font_decode_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:205: warning: Member glyph_cnt (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:206: warning: Member bbx_mode (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:207: warning: Member bits_per_0 (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:208: warning: Member bits_per_1 (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:211: warning: Member bits_per_char_width (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:212: warning: Member bits_per_char_height (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:213: warning: Member bits_per_char_x (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:214: warning: Member bits_per_char_y (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:215: warning: Member bits_per_delta_x (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:218: warning: Member max_char_width (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:219: warning: Member max_char_height (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:220: warning: Member x_offset (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:221: warning: Member y_offset (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:224: warning: Member ascent_A (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:225: warning: Member descent_g (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:226: warning: Member ascent_para (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:227: warning: Member descent_para (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:230: warning: Member start_pos_upper_A (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:231: warning: Member start_pos_lower_a (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:235: warning: Member start_pos_unicode (variable) of class _u8g2_font_info_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:265: warning: Member first_table_cnt (variable) of class _u8g2_kerning_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:266: warning: Member second_table_cnt (variable) of class _u8g2_kerning_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:267: warning: Member first_encoding_table (variable) of class _u8g2_kerning_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:268: warning: Member index_to_second_table (variable) of class _u8g2_kerning_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:269: warning: Member second_encoding_table (variable) of class _u8g2_kerning_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:270: warning: Member kerning_values (variable) of class _u8g2_kerning_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:823: warning: Member visible (variable) of class _u8sl_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:824: warning: Member total (variable) of class _u8sl_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:825: warning: Member first_pos (variable) of class _u8sl_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:826: warning: Member current_pos (variable) of class _u8sl_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:828: warning: Member x (variable) of class _u8sl_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:829: warning: Member y (variable) of class _u8sl_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:29: warning: Member x_direction (variable) of class pg_edge_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:30: warning: Member height (variable) of class pg_edge_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:31: warning: Member current_x_offset (variable) of class pg_edge_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:32: warning: Member error_offset (variable) of class pg_edge_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:35: warning: Member current_y (variable) of class pg_edge_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:36: warning: Member max_y (variable) of class pg_edge_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:37: warning: Member current_x (variable) of class pg_edge_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:38: warning: Member error (variable) of class pg_edge_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:41: warning: Member next_idx_fn)(pg_struct *pg, uint8_t i) (variable) of class pg_edge_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:42: warning: Member curr_idx (variable) of class pg_edge_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:21: warning: Member x (variable) of class pg_point_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2_polygon.c:22: warning: Member y (variable) of class pg_point_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:277: warning: Member update (variable) of class u8g2_cb_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:278: warning: Member draw_l90 (variable) of class u8g2_cb_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/u8g2_esp32_hal.h:26: warning: Member clk (variable) of class u8g2_esp32_hal_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/u8g2_esp32_hal.h:27: warning: Member mosi (variable) of class u8g2_esp32_hal_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/u8g2_esp32_hal.h:28: warning: Member sda (variable) of class u8g2_esp32_hal_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/u8g2_esp32_hal.h:29: warning: Member scl (variable) of class u8g2_esp32_hal_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/u8g2_esp32_hal.h:30: warning: Member cs (variable) of class u8g2_esp32_hal_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/u8g2_esp32_hal.h:31: warning: Member reset (variable) of class u8g2_esp32_hal_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/u8g2_esp32_hal.h:32: warning: Member dc (variable) of class u8g2_esp32_hal_t is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:286: warning: Member u8x8 (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:287: warning: Member ll_hvline (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:288: warning: Member cb (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:291: warning: Member tile_buf_ptr (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:292: warning: Member tile_buf_height (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:293: warning: Member tile_curr_row (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:296: warning: Member pixel_buf_width (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:297: warning: Member pixel_buf_height (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:298: warning: Member pixel_curr_row (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:304: warning: Member buf_y0 (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:305: warning: Member buf_y1 (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:308: warning: Member width (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:309: warning: Member height (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:314: warning: Member user_x0 (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:315: warning: Member user_x1 (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:316: warning: Member user_y0 (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:317: warning: Member user_y1 (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:320: warning: Member font (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:324: warning: Member font_calc_vref (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:325: warning: Member font_decode (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:326: warning: Member font_info (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:328: warning: Member font_height_mode (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:329: warning: Member font_ref_ascent (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:330: warning: Member font_ref_descent (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:332: warning: Member glyph_x_offset (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:335: warning: Member draw_color (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8g2.h:338: warning: Member is_auto_page_clear (variable) of class u8g2_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:211: warning: Member chip_enable_level (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:212: warning: Member chip_disable_level (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:214: warning: Member post_chip_enable_wait_ns (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:215: warning: Member pre_chip_disable_wait_ns (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:216: warning: Member reset_pulse_width_ms (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:217: warning: Member post_reset_wait_ms (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:224: warning: Member sda_setup_time_ns (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:228: warning: Member sck_pulse_width_ns (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:231: warning: Member sck_clock_hz (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:241: warning: Member spi_mode (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:244: warning: Member i2c_bus_clock_100kHz (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:250: warning: Member data_setup_time_ns (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:252: warning: Member write_pulse_width_ns (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:255: warning: Member tile_width (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:256: warning: Member tile_height (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:258: warning: Member default_x_offset (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:259: warning: Member flipmode_x_offset (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:267: warning: Member pixel_width (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:268: warning: Member pixel_height (variable) of class u8x8_display_info_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8_d_ks0108.c:61: warning: Member ptr (variable) of class u8x8_ks0108_vars is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8_d_ks0108.c:62: warning: Member x (variable) of class u8x8_ks0108_vars is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8_d_ks0108.c:63: warning: Member c (variable) of class u8x8_ks0108_vars is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8_d_ks0108.c:64: warning: Member arg_int (variable) of class u8x8_ks0108_vars is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:314: warning: Member display_info (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:315: warning: Member next_cb (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:316: warning: Member display_cb (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:317: warning: Member cad_cb (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:318: warning: Member byte_cb (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:319: warning: Member gpio_and_delay_cb (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:320: warning: Member font (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:321: warning: Member encoding (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:322: warning: Member x_offset (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:323: warning: Member is_font_inverse_mode (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:324: warning: Member i2c_address (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:327: warning: Member i2c_started (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:328: warning: Member device_address (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:329: warning: Member utf8_state (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:330: warning: Member gpio_result (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:331: warning: Member debounce_default_pin_state (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:332: warning: Member debounce_last_pin_state (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:333: warning: Member debounce_state (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:334: warning: Member debounce_result_msg (variable) of class u8x8_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:200: warning: Member tile_ptr (variable) of class u8x8_tile_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:201: warning: Member cnt (variable) of class u8x8_tile_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:202: warning: Member x_pos (variable) of class u8x8_tile_struct is not documented.
+/home/pcbreflux/workspace/esp32/ESP32_oled_i2c_u8g2/main/clib/u8x8.h:203: warning: Member y_pos (variable) of class u8x8_tile_struct is not documented.
