@@ -1,0 +1,563 @@
+EESchema Schematic File Version 2
+LIBS:module
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:ESP32-bat-monitor-latch-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "ESP32 Battery Monitor and Latch Circuit"
+Date "2017-08-10"
+Rev "1.1"
+Comp "pcbreflux"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MAX809 U1
+U 1 1 598C35E2
+P 3700 6450
+F 0 "U1" H 3625 7346 60  0000 C CNN
+F 1 "MAX809" H 3625 7236 60  0000 C CNN
+F 2 "w_smd_trans:sot23" H 3700 6450 60  0001 C CNN
+F 3 "" H 3700 6450 60  0001 C CNN
+	1    3700 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Q_PMOS_GDS Q2
+U 1 1 598C37A5
+P 3700 2050
+F 0 "Q2" H 3906 2097 50  0000 L CNN
+F 1 "AO3401" H 3906 2004 50  0000 L CNN
+F 2 "w_smd_trans:sot23" H 3906 1957 50  0001 L CNN
+F 3 "" H 3700 2050 50  0001 C CNN
+	1    3700 2050
+	0    1    -1   0   
+$EndComp
+$Comp
+L CONN_01X02 J1
+U 1 1 598C38E2
+P 1550 2850
+F 0 "J1" H 1631 2892 50  0000 L CNN
+F 1 "CONN_01X02" H 1631 2799 50  0000 L CNN
+F 2 "w_conn_mkds:mkds_1,5-2" H 1550 2850 50  0001 C CNN
+F 3 "" H 1550 2850 50  0001 C CNN
+	1    1550 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 J2
+U 1 1 598C3987
+P 1550 3700
+F 0 "J2" H 1631 3742 50  0000 L CNN
+F 1 "CONN_01X02" H 1631 3649 50  0000 L CNN
+F 2 "w_conn_mkds:mkds_1,5-2" H 1550 3700 50  0001 C CNN
+F 3 "" H 1550 3700 50  0001 C CNN
+	1    1550 3700
+	1    0    0    -1  
+$EndComp
+Text Notes 1500 2700 1    60   ~ 0
+BAT LiFePo4 2.5V-3.6V
+Text Notes 1600 4950 1    60   ~ 0
+Switch Normally Closed
+$Comp
+L C C1
+U 1 1 598C4412
+P 2250 2600
+F 0 "C1" H 2365 2647 50  0000 L CNN
+F 1 "100nF" H 2365 2554 50  0000 L CNN
+F 2 "w_smd_cap:c_0603" H 2288 2450 50  0001 C CNN
+F 3 "" H 2250 2600 50  0001 C CNN
+	1    2250 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 598C45BD
+P 1900 2600
+F 0 "R1" H 1970 2647 50  0000 L CNN
+F 1 "2M2" H 1970 2554 50  0000 L CNN
+F 2 "w_smd_resistors:r_0603" V 1830 2600 50  0001 C CNN
+F 3 "" H 1900 2600 50  0001 C CNN
+	1    1900 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R2
+U 1 1 598C4932
+P 3300 2550
+F 0 "R2" H 3100 2600 50  0000 L CNN
+F 1 "2M2" H 3050 2500 50  0000 L CNN
+F 2 "w_smd_resistors:r_0603" V 3230 2550 50  0001 C CNN
+F 3 "" H 3300 2550 50  0001 C CNN
+	1    3300 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Q_NMOS_GDS Q3
+U 1 1 598C4AD2
+P 4000 3050
+F 0 "Q3" H 4206 3097 50  0000 L CNN
+F 1 "2N7002" H 4206 3004 50  0000 L CNN
+F 2 "w_smd_trans:sot23" H 4200 3150 50  0001 C CNN
+F 3 "" H 4000 3050 50  0001 C CNN
+	1    4000 3050
+	-1   0    0    -1  
+$EndComp
+$Comp
+L R R3
+U 1 1 598C4C60
+P 4250 2700
+F 0 "R3" H 4320 2747 50  0000 L CNN
+F 1 "100k" H 4320 2654 50  0000 L CNN
+F 2 "w_smd_resistors:r_0603" V 4180 2700 50  0001 C CNN
+F 3 "" H 4250 2700 50  0001 C CNN
+	1    4250 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R4
+U 1 1 598C4D14
+P 4250 3500
+F 0 "R4" H 4320 3547 50  0000 L CNN
+F 1 "2M2" H 4320 3454 50  0000 L CNN
+F 2 "w_smd_resistors:r_0603" V 4180 3500 50  0001 C CNN
+F 3 "" H 4250 3500 50  0001 C CNN
+	1    4250 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C2
+U 1 1 598C4D8A
+P 4600 3500
+F 0 "C2" H 4715 3547 50  0000 L CNN
+F 1 "100nF" H 4715 3454 50  0000 L CNN
+F 2 "w_smd_cap:c_0603" H 4638 3350 50  0001 C CNN
+F 3 "" H 4600 3500 50  0001 C CNN
+	1    4600 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Q_NMOS_GDS Q1
+U 1 1 598C3A41
+P 2150 3550
+F 0 "Q1" H 2356 3597 50  0000 L CNN
+F 1 "2N7002" H 2356 3504 50  0000 L CNN
+F 2 "w_smd_trans:sot23" H 2350 3650 50  0001 C CNN
+F 3 "" H 2150 3550 50  0001 C CNN
+	1    2150 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Q_PMOS_GDS Q4
+U 1 1 598C54EB
+P 4800 5800
+F 0 "Q4" H 5006 5847 50  0000 L CNN
+F 1 "AO3401" H 5006 5754 50  0000 L CNN
+F 2 "w_smd_trans:sot23" H 5006 5707 50  0001 L CNN
+F 3 "" H 4800 5800 50  0001 C CNN
+	1    4800 5800
+	0    1    -1   0   
+$EndComp
+$Comp
+L R R5
+U 1 1 598C55FB
+P 4300 6300
+F 0 "R5" H 4370 6347 50  0000 L CNN
+F 1 "100k" H 4370 6254 50  0000 L CNN
+F 2 "w_smd_resistors:r_0603" V 4230 6300 50  0001 C CNN
+F 3 "" H 4300 6300 50  0001 C CNN
+	1    4300 6300
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR04
+U 1 1 598C56A3
+P 3050 6700
+F 0 "#PWR04" H 3050 6450 50  0001 C CNN
+F 1 "GND" H 3055 6523 50  0000 C CNN
+F 2 "" H 3050 6700 50  0001 C CNN
+F 3 "" H 3050 6700 50  0001 C CNN
+	1    3050 6700
+	1    0    0    -1  
+$EndComp
+$Comp
+L VCC #PWR01
+U 1 1 598C573A
+P 3150 1850
+F 0 "#PWR01" H 3150 1700 50  0001 C CNN
+F 1 "VCC" H 3167 2027 50  0000 C CNN
+F 2 "" H 3150 1850 50  0001 C CNN
+F 3 "" H 3150 1850 50  0001 C CNN
+	1    3150 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L VCC #PWR03
+U 1 1 598C5848
+P 3050 5600
+F 0 "#PWR03" H 3050 5450 50  0001 C CNN
+F 1 "VCC" H 3067 5777 50  0000 C CNN
+F 2 "" H 3050 5600 50  0001 C CNN
+F 3 "" H 3050 5600 50  0001 C CNN
+	1    3050 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 J3
+U 1 1 598C5D0B
+P 6100 3450
+F 0 "J3" H 6181 3492 50  0000 L CNN
+F 1 "CONN_01X02" H 6181 3399 50  0000 L CNN
+F 2 "w_conn_mkds:mkds_1,5-2" H 6100 3450 50  0001 C CNN
+F 3 "" H 6100 3450 50  0001 C CNN
+	1    6100 3450
+	1    0    0    1   
+$EndComp
+$Comp
+L CONN_01X02 J4
+U 1 1 598C652A
+P 6100 3900
+F 0 "J4" H 6181 3942 50  0000 L CNN
+F 1 "CONN_01X02" H 6181 3849 50  0000 L CNN
+F 2 "w_conn_mkds:mkds_1,5-2" H 6100 3900 50  0001 C CNN
+F 3 "" H 6100 3900 50  0001 C CNN
+	1    6100 3900
+	1    0    0    1   
+$EndComp
+Text Notes 6100 3250 0    60   ~ 0
+Power Out
+Text Notes 6100 3750 0    60   ~ 0
+In Shutdown
+Text Notes 6100 4100 0    60   ~ 0
+Out Low Power
+$Comp
+L C C3
+U 1 1 598C7368
+P 3050 6050
+F 0 "C3" H 3165 6097 50  0000 L CNN
+F 1 "100nF" H 3165 6004 50  0000 L CNN
+F 2 "w_smd_cap:c_0603" H 3088 5900 50  0001 C CNN
+F 3 "" H 3050 6050 50  0001 C CNN
+	1    3050 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L PWR_FLAG #FLG01
+U 1 1 598C83D4
+P 1050 2900
+F 0 "#FLG01" H 1050 2975 50  0001 C CNN
+F 1 "PWR_FLAG" H 1050 3078 50  0000 C CNN
+F 2 "" H 1050 2900 50  0001 C CNN
+F 3 "" H 1050 2900 50  0001 C CNN
+	1    1050 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L PWR_FLAG #FLG02
+U 1 1 598C849A
+P 1200 1900
+F 0 "#FLG02" H 1200 1975 50  0001 C CNN
+F 1 "PWR_FLAG" H 1200 2078 50  0000 C CNN
+F 2 "" H 1200 1900 50  0001 C CNN
+F 3 "" H 1200 1900 50  0001 C CNN
+	1    1200 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 J5
+U 1 1 598C556A
+P 3200 3700
+F 0 "J5" H 3281 3742 50  0000 L CNN
+F 1 "CONN_01X02" H 3281 3649 50  0000 L CNN
+F 2 "w_conn_mkds:mkds_1,5-2" H 3200 3700 50  0001 C CNN
+F 3 "" H 3200 3700 50  0001 C CNN
+	1    3200 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L TEST_1P J6
+U 1 1 598C5C4C
+P 2550 3150
+F 0 "J6" H 2400 3250 50  0000 L CNN
+F 1 "TEST_1P" H 2300 3400 50  0000 L CNN
+F 2 "w_details:testpoint_1mm" H 2750 3150 50  0001 C CNN
+F 3 "" H 2750 3150 50  0001 C CNN
+	1    2550 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L TEST_1P J8
+U 1 1 598C6B00
+P 4200 5950
+F 0 "J8" H 4261 6071 50  0000 L CNN
+F 1 "TEST_1P" H 4261 5978 50  0000 L CNN
+F 2 "w_details:testpoint_1mm" H 4400 5950 50  0001 C CNN
+F 3 "" H 4400 5950 50  0001 C CNN
+	1    4200 5950
+	1    0    0    -1  
+$EndComp
+Text Notes 3600 7050 0    60   ~ 0
+Battery Monitor
+$Comp
+L GND #PWR02
+U 1 1 598C43D7
+P 2850 4100
+F 0 "#PWR02" H 2850 3850 50  0001 C CNN
+F 1 "GND" H 2855 3923 50  0000 C CNN
+F 2 "" H 2850 4100 50  0001 C CNN
+F 3 "" H 2850 4100 50  0001 C CNN
+	1    2850 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Q_PMOS_GDS Q5
+U 1 1 599C1598
+P 4850 2050
+F 0 "Q5" H 5056 2097 50  0000 L CNN
+F 1 "AO3401" H 5056 2004 50  0000 L CNN
+F 2 "w_smd_trans:sot23" H 5056 1957 50  0001 L CNN
+F 3 "" H 4850 2050 50  0001 C CNN
+	1    4850 2050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L TEST_1P J7
+U 1 1 599C18F2
+P 3550 2750
+F 0 "J7" H 3600 2850 50  0000 L CNN
+F 1 "TEST_1P" H 3400 2950 50  0000 L CNN
+F 2 "w_details:testpoint_1mm" H 3750 2750 50  0001 C CNN
+F 3 "" H 3750 2750 50  0001 C CNN
+	1    3550 2750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 3900 2250 3750
+Wire Wire Line
+	1250 3900 5500 3900
+Wire Wire Line
+	1350 3900 1350 3750
+Wire Wire Line
+	1350 1950 1350 2800
+Wire Wire Line
+	1200 1950 3500 1950
+Wire Wire Line
+	2250 1950 1900 1950
+Wire Wire Line
+	2250 1950 2250 2450
+Wire Wire Line
+	1900 1950 1900 2450
+Connection ~ 2250 1950
+Wire Wire Line
+	2250 3250 2250 2750
+Wire Wire Line
+	1350 3250 2550 3250
+Wire Wire Line
+	1350 3250 1350 3650
+Wire Wire Line
+	1050 2900 1350 2900
+Wire Wire Line
+	1250 2900 1250 3900
+Connection ~ 1350 3900
+Wire Wire Line
+	1900 2750 1900 3550
+Connection ~ 1900 3250
+Connection ~ 2250 3900
+Wire Wire Line
+	3300 3350 3300 2700
+Wire Wire Line
+	3300 1950 3300 2400
+Connection ~ 1900 1950
+Wire Wire Line
+	3700 2850 3700 2250
+Connection ~ 3300 2850
+Connection ~ 3300 1950
+Wire Wire Line
+	3900 3900 3900 3250
+Connection ~ 3700 2850
+Wire Wire Line
+	1900 3550 1950 3550
+Wire Wire Line
+	4200 3050 5650 3050
+Wire Wire Line
+	4250 2850 4250 3350
+Wire Wire Line
+	4250 3900 4250 3650
+Connection ~ 3900 3900
+Wire Wire Line
+	4600 3900 4600 3650
+Connection ~ 4250 3900
+Wire Wire Line
+	4600 3050 4600 3350
+Connection ~ 4250 3050
+Connection ~ 4250 1950
+Wire Wire Line
+	3150 1850 3150 1950
+Connection ~ 3150 1950
+Wire Wire Line
+	3050 5600 3050 5900
+Wire Wire Line
+	3050 5850 3200 5850
+Wire Wire Line
+	3200 6250 3050 6250
+Wire Wire Line
+	3050 6200 3050 6700
+Wire Wire Line
+	3050 6600 4300 6600
+Wire Wire Line
+	4300 6600 4300 6450
+Connection ~ 3050 6600
+Wire Wire Line
+	4300 6050 4300 6150
+Connection ~ 4600 3900
+Wire Wire Line
+	5350 5700 5000 5700
+Connection ~ 3050 5700
+Wire Wire Line
+	4800 6050 4800 6000
+Connection ~ 4300 6050
+Wire Wire Line
+	4050 6050 5650 6050
+Wire Wire Line
+	5650 3850 5900 3850
+Wire Wire Line
+	5650 3050 5650 3850
+Wire Wire Line
+	4600 5700 4450 5700
+Wire Wire Line
+	4450 5700 4450 5450
+Wire Wire Line
+	4450 5450 3200 5450
+Wire Wire Line
+	3200 5450 3200 5700
+Wire Wire Line
+	3200 5700 3050 5700
+Connection ~ 4800 6050
+Connection ~ 3050 5850
+Connection ~ 3050 6250
+Wire Wire Line
+	1200 1950 1200 1900
+Connection ~ 1350 1950
+Connection ~ 1250 2900
+Wire Wire Line
+	2850 3650 3000 3650
+Wire Wire Line
+	3000 3750 2850 3750
+Wire Wire Line
+	2850 3750 2850 4100
+Connection ~ 2850 3900
+Connection ~ 2250 3250
+Wire Wire Line
+	3300 2850 3900 2850
+Wire Wire Line
+	4200 5950 4200 6050
+Connection ~ 4200 6050
+Wire Notes Line
+	2850 5300 5500 5300
+Wire Notes Line
+	5500 5300 5500 7150
+Wire Notes Line
+	5500 7150 2850 7150
+Wire Notes Line
+	2850 7150 2850 5300
+Wire Wire Line
+	3900 1950 4650 1950
+Connection ~ 3700 2400
+Wire Wire Line
+	2250 3350 3300 3350
+Connection ~ 2850 3350
+Wire Wire Line
+	2850 3350 2850 3650
+Wire Wire Line
+	2550 3250 2550 3150
+Wire Wire Line
+	5900 3400 5350 3400
+Wire Wire Line
+	5350 1950 5350 5700
+Wire Wire Line
+	5050 1950 5350 1950
+Connection ~ 5350 3400
+Wire Wire Line
+	5900 3950 5650 3950
+Wire Wire Line
+	5650 3950 5650 6050
+Wire Wire Line
+	5900 3500 5500 3500
+Wire Wire Line
+	5500 3500 5500 3900
+Wire Notes Line
+	1200 3200 2450 3200
+Wire Notes Line
+	2450 3200 2450 5200
+Wire Notes Line
+	2450 5200 1200 5200
+Wire Notes Line
+	1200 5200 1200 3200
+Wire Wire Line
+	4250 1950 4250 1950
+Wire Wire Line
+	4250 1950 4250 2550
+Wire Wire Line
+	3700 2400 4850 2400
+Wire Wire Line
+	4850 2400 4850 2250
+Connection ~ 4600 3050
+Wire Wire Line
+	3550 2850 3550 2750
+Connection ~ 3550 2850
+Wire Notes Line
+	3250 1500 3250 3650
+Wire Notes Line
+	3250 3650 4500 3650
+Wire Notes Line
+	4500 3650 4500 1450
+Wire Notes Line
+	4500 1450 3250 1450
+Wire Notes Line
+	4600 1450 5500 1450
+Wire Notes Line
+	5500 1450 5500 2750
+Wire Notes Line
+	5500 2750 4600 2750
+Wire Notes Line
+	4600 2750 4600 1450
+Text Notes 3250 4900 1    60   ~ 0
+Switch Normally Open
+Text Notes 4100 1550 2    60   ~ 0
+Latch Curcuit
+Text Notes 5500 1550 2    60   ~ 0
+Reverse Protection
+$EndSCHEMATC

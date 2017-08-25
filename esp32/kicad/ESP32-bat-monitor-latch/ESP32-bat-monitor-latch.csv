@@ -1,0 +1,18 @@
+"Id";"Designator";"Package";"Quantity";"Designation";"Supplier and ref";
+1;"REF**,REF**,REF**,REF**,REF**,REF**,REF**,REF**,REF**,REF**,REF**,REF**";"Via-0.6mm";12;"Via-0.6mm";;;
+2;"G***";"Logo_silk_CC-BY-SA_5x2mm";1;"LOGO";;;
+3;"G***";"Logo_silk_OSHW_6x6mm";1;"LOGO";;;
+4;"REF**,REF**,REF**,REF**";"micro_bite";4;"micro_bite";;;
+5;"hole_3mm,hole_3mm,hole_3mm,hole_3mm";"hole_3mm";4;"VAL**";;;
+6;"C1,C2,C3,C5";"c_0603";4;"100nF";;;
+7;"J1,J2,J3,J4,J5";"mkds_1,5-2";5;"CONN_01X02";;;
+8;"Q1,Q3";"sot23";2;"2N7002";;;
+9;"Q2,Q4,Q5";"sot23";3;"AO3401";;;
+10;"R1,R2,R4";"r_0603";3;"2M2";;;
+11;"R3,R5,R6";"r_0603";3;"100k";;;
+12;"U1";"sot23";1;"MAX809";;;
+13;"J6,J7,J8,J9";"testpoint_1mm";4;"TEST_1P";;;
+14;"REF**";"pcbreflux_logo";1;"pcbreflux_logo";;;
+15;"C4";"c_0805";1;"10uF";;;
+16;"J10";"pin_socket_5";1;"CONN_01X05";;;
+17;"U2";"ESP-WROOM-32-short";1;"ES-WROOM-32";;;

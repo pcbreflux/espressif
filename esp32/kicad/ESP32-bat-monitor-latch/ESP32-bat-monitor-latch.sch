@@ -1,0 +1,762 @@
+EESchema Schematic File Version 2
+LIBS:module
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:ESP32-bat-monitor-latch-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "ESP32 Battery Monitor and Latch Circuit"
+Date "2017-08-10"
+Rev "1.1"
+Comp "pcbreflux"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MAX809 U1
+U 1 1 598C35E2
+P 3700 5200
+F 0 "U1" H 3625 6096 60  0000 C CNN
+F 1 "DIO6809" H 3625 5986 60  0000 C CNN
+F 2 "w_smd_trans:sot23" H 3700 5200 60  0001 C CNN
+F 3 "" H 3700 5200 60  0001 C CNN
+	1    3700 5200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Q_PMOS_GDS Q2
+U 1 1 598C37A5
+P 3700 2050
+F 0 "Q2" H 3906 2097 50  0000 L CNN
+F 1 "AO3401" H 3906 2004 50  0000 L CNN
+F 2 "w_smd_trans:sot23" H 3906 1957 50  0001 L CNN
+F 3 "" H 3700 2050 50  0001 C CNN
+	1    3700 2050
+	0    1    -1   0   
+$EndComp
+$Comp
+L CONN_01X02 J1
+U 1 1 598C38E2
+P 1550 2850
+F 0 "J1" H 1631 2892 50  0000 L CNN
+F 1 "CONN_01X02" H 1631 2799 50  0000 L CNN
+F 2 "w_conn_mkds:mkds_1,5-2" H 1550 2850 50  0001 C CNN
+F 3 "" H 1550 2850 50  0001 C CNN
+	1    1550 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 J2
+U 1 1 598C3987
+P 1550 3700
+F 0 "J2" H 1631 3742 50  0000 L CNN
+F 1 "CONN_01X02" H 1631 3649 50  0000 L CNN
+F 2 "w_conn_mkds:mkds_1,5-2" H 1550 3700 50  0001 C CNN
+F 3 "" H 1550 3700 50  0001 C CNN
+	1    1550 3700
+	1    0    0    -1  
+$EndComp
+Text Notes 1200 3300 1    60   ~ 0
+BAT LiFePo4 2.5V-3.6V
+Text Notes 1800 4200 1    60   ~ 0
+Switch Normally Closed
+$Comp
+L GND #PWR01
+U 1 1 598C43D7
+P 2250 4100
+F 0 "#PWR01" H 2250 3850 50  0001 C CNN
+F 1 "GND" H 2255 3923 50  0000 C CNN
+F 2 "" H 2250 4100 50  0001 C CNN
+F 3 "" H 2250 4100 50  0001 C CNN
+	1    2250 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C1
+U 1 1 598C4412
+P 2500 2550
+F 0 "C1" H 2615 2597 50  0000 L CNN
+F 1 "100nF" H 2615 2504 50  0000 L CNN
+F 2 "w_smd_cap:c_0603" H 2538 2400 50  0001 C CNN
+F 3 "" H 2500 2550 50  0001 C CNN
+	1    2500 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 598C45BD
+P 2900 2550
+F 0 "R1" H 2970 2597 50  0000 L CNN
+F 1 "2M2" H 2970 2504 50  0000 L CNN
+F 2 "w_smd_resistors:r_0603" V 2830 2550 50  0001 C CNN
+F 3 "" H 2900 2550 50  0001 C CNN
+	1    2900 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 3900 2250 4100
+Wire Wire Line
+	1250 3900 5850 3900
+Wire Wire Line
+	1350 3900 1350 3750
+Wire Wire Line
+	1350 1950 1350 2800
+Wire Wire Line
+	1200 1950 3500 1950
+Wire Wire Line
+	2500 1950 2500 2400
+Wire Wire Line
+	2900 1950 2900 2400
+Connection ~ 2500 1950
+Wire Wire Line
+	2500 2700 2500 3250
+Wire Wire Line
+	1350 3250 2900 3250
+Wire Wire Line
+	1350 3250 1350 3650
+Wire Wire Line
+	1050 2900 1350 2900
+Wire Wire Line
+	1250 2900 1250 3900
+Connection ~ 1350 3900
+Wire Wire Line
+	2900 2700 2900 3400
+Connection ~ 2500 3250
+Connection ~ 2900 3250
+Wire Wire Line
+	3300 3900 3300 3600
+Connection ~ 2250 3900
+$Comp
+L R R2
+U 1 1 598C4932
+P 3300 2550
+F 0 "R2" H 3370 2597 50  0000 L CNN
+F 1 "2M2" H 3370 2504 50  0000 L CNN
+F 2 "w_smd_resistors:r_0603" V 3230 2550 50  0001 C CNN
+F 3 "" H 3300 2550 50  0001 C CNN
+	1    3300 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3300 2700 3300 3200
+Wire Wire Line
+	3300 1950 3300 2400
+Connection ~ 2900 1950
+Wire Wire Line
+	2600 2850 3900 2850
+Wire Wire Line
+	3700 2850 3700 2250
+Connection ~ 3300 2850
+Connection ~ 3300 1950
+$Comp
+L Q_NMOS_GDS Q3
+U 1 1 598C4AD2
+P 4000 3050
+F 0 "Q3" H 4206 3097 50  0000 L CNN
+F 1 "2N7002" H 4206 3004 50  0000 L CNN
+F 2 "w_smd_trans:sot23" H 4200 3150 50  0001 C CNN
+F 3 "" H 4000 3050 50  0001 C CNN
+	1    4000 3050
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	3900 3900 3900 3250
+Connection ~ 3300 3900
+Connection ~ 3700 2850
+$Comp
+L R R3
+U 1 1 598C4C60
+P 4250 2700
+F 0 "R3" H 4320 2747 50  0000 L CNN
+F 1 "100k" H 4320 2654 50  0000 L CNN
+F 2 "w_smd_resistors:r_0603" V 4180 2700 50  0001 C CNN
+F 3 "" H 4250 2700 50  0001 C CNN
+	1    4250 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R4
+U 1 1 598C4D14
+P 4250 3500
+F 0 "R4" H 4320 3547 50  0000 L CNN
+F 1 "2M2" H 4320 3454 50  0000 L CNN
+F 2 "w_smd_resistors:r_0603" V 4180 3500 50  0001 C CNN
+F 3 "" H 4250 3500 50  0001 C CNN
+	1    4250 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C2
+U 1 1 598C4D8A
+P 4600 3500
+F 0 "C2" H 4715 3547 50  0000 L CNN
+F 1 "100nF" H 4715 3454 50  0000 L CNN
+F 2 "w_smd_cap:c_0603" H 4638 3350 50  0001 C CNN
+F 3 "" H 4600 3500 50  0001 C CNN
+	1    4600 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Q_NMOS_GDS Q1
+U 1 1 598C3A41
+P 3200 3400
+F 0 "Q1" H 3406 3447 50  0000 L CNN
+F 1 "2N7002" H 3406 3354 50  0000 L CNN
+F 2 "w_smd_trans:sot23" H 3400 3500 50  0001 C CNN
+F 3 "" H 3200 3400 50  0001 C CNN
+	1    3200 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2900 3400 3000 3400
+Wire Wire Line
+	4200 3050 4800 3050
+Wire Wire Line
+	4250 2850 4250 3350
+Wire Wire Line
+	4250 3900 4250 3650
+Connection ~ 3900 3900
+Wire Wire Line
+	4600 3900 4600 3650
+Connection ~ 4250 3900
+Wire Wire Line
+	4600 3050 4600 3350
+Connection ~ 4250 3050
+Wire Wire Line
+	4250 1850 4250 2550
+Connection ~ 4250 1950
+$Comp
+L Q_PMOS_GDS Q4
+U 1 1 598C54EB
+P 4800 4550
+F 0 "Q4" H 5006 4597 50  0000 L CNN
+F 1 "AO3401" H 5006 4504 50  0000 L CNN
+F 2 "w_smd_trans:sot23" H 5006 4457 50  0001 L CNN
+F 3 "" H 4800 4550 50  0001 C CNN
+	1    4800 4550
+	0    1    -1   0   
+$EndComp
+$Comp
+L R R5
+U 1 1 598C55FB
+P 4300 5050
+F 0 "R5" H 4370 5097 50  0000 L CNN
+F 1 "100k" H 4370 5004 50  0000 L CNN
+F 2 "w_smd_resistors:r_0603" V 4230 5050 50  0001 C CNN
+F 3 "" H 4300 5050 50  0001 C CNN
+	1    4300 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR02
+U 1 1 598C56A3
+P 3050 5450
+F 0 "#PWR02" H 3050 5200 50  0001 C CNN
+F 1 "GND" H 3055 5273 50  0000 C CNN
+F 2 "" H 3050 5450 50  0001 C CNN
+F 3 "" H 3050 5450 50  0001 C CNN
+	1    3050 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L VCC #PWR03
+U 1 1 598C573A
+P 1600 1850
+F 0 "#PWR03" H 1600 1700 50  0001 C CNN
+F 1 "VCC" H 1617 2027 50  0000 C CNN
+F 2 "" H 1600 1850 50  0001 C CNN
+F 3 "" H 1600 1850 50  0001 C CNN
+	1    1600 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 1850 1600 1950
+Connection ~ 1600 1950
+$Comp
+L VCC #PWR04
+U 1 1 598C5848
+P 3050 4350
+F 0 "#PWR04" H 3050 4200 50  0001 C CNN
+F 1 "VCC" H 3067 4527 50  0000 C CNN
+F 2 "" H 3050 4350 50  0001 C CNN
+F 3 "" H 3050 4350 50  0001 C CNN
+	1    3050 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3050 4350 3050 4650
+Wire Wire Line
+	3050 4600 3200 4600
+Wire Wire Line
+	3200 5000 3050 5000
+Wire Wire Line
+	3050 4950 3050 5450
+Wire Wire Line
+	3050 5350 4300 5350
+Wire Wire Line
+	4300 5350 4300 5200
+Connection ~ 3050 5350
+Wire Wire Line
+	4300 4800 4300 4900
+$Comp
+L CONN_01X02 J3
+U 1 1 598C5D0B
+P 6050 2900
+F 0 "J3" H 6131 2942 50  0000 L CNN
+F 1 "CONN_01X02" H 6131 2849 50  0000 L CNN
+F 2 "w_conn_mkds:mkds_1,5-2" H 6050 2900 50  0001 C CNN
+F 3 "" H 6050 2900 50  0001 C CNN
+	1    6050 2900
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	5850 1950 5850 2850
+Wire Wire Line
+	5850 3900 5850 2950
+Connection ~ 4600 3900
+Wire Wire Line
+	5000 4450 5300 4450
+Wire Wire Line
+	5300 4450 5300 1950
+Connection ~ 5300 1950
+Connection ~ 3050 4450
+Wire Wire Line
+	4800 4800 4800 4750
+Connection ~ 4300 4800
+Wire Wire Line
+	5150 5150 9100 5150
+$Comp
+L CONN_01X02 J4
+U 1 1 598C652A
+P 6100 4650
+F 0 "J4" H 6181 4692 50  0000 L CNN
+F 1 "CONN_01X02" H 6181 4599 50  0000 L CNN
+F 2 "w_conn_mkds:mkds_1,5-2" H 6100 4650 50  0001 C CNN
+F 3 "" H 6100 4650 50  0001 C CNN
+	1    6100 4650
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	5900 4600 5900 4000
+Wire Wire Line
+	4800 4000 9050 4000
+Wire Wire Line
+	4800 3050 4800 4000
+Connection ~ 4600 3050
+Wire Wire Line
+	5900 5150 5900 4700
+Text Notes 5950 2700 0    60   ~ 0
+Power Out
+Text Notes 6000 4300 0    60   ~ 0
+In Shutdown
+Text Notes 6000 4950 0    60   ~ 0
+Out Low Power
+Wire Wire Line
+	4050 4800 5150 4800
+Wire Wire Line
+	4600 4450 4450 4450
+Wire Wire Line
+	4450 4450 4450 4200
+Wire Wire Line
+	4450 4200 3200 4200
+Wire Wire Line
+	3200 4200 3200 4450
+Wire Wire Line
+	3200 4450 3050 4450
+Wire Wire Line
+	5150 4800 5150 5150
+Connection ~ 4800 4800
+$Comp
+L C C3
+U 1 1 598C7368
+P 3050 4800
+F 0 "C3" H 3165 4847 50  0000 L CNN
+F 1 "100nF" H 3165 4754 50  0000 L CNN
+F 2 "w_smd_cap:c_0603" H 3088 4650 50  0001 C CNN
+F 3 "" H 3050 4800 50  0001 C CNN
+	1    3050 4800
+	1    0    0    -1  
+$EndComp
+Connection ~ 3050 4600
+Connection ~ 3050 5000
+$Comp
+L PWR_FLAG #FLG05
+U 1 1 598C83D4
+P 1050 2900
+F 0 "#FLG05" H 1050 2975 50  0001 C CNN
+F 1 "PWR_FLAG" H 1050 3078 50  0000 C CNN
+F 2 "" H 1050 2900 50  0001 C CNN
+F 3 "" H 1050 2900 50  0001 C CNN
+	1    1050 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L PWR_FLAG #FLG06
+U 1 1 598C849A
+P 1200 1900
+F 0 "#FLG06" H 1200 1975 50  0001 C CNN
+F 1 "PWR_FLAG" H 1200 2078 50  0000 C CNN
+F 2 "" H 1200 1900 50  0001 C CNN
+F 3 "" H 1200 1900 50  0001 C CNN
+	1    1200 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1200 1950 1200 1900
+Connection ~ 1350 1950
+Connection ~ 1250 2900
+$Comp
+L CONN_01X02 J5
+U 1 1 598C556A
+P 2850 3700
+F 0 "J5" H 2931 3742 50  0000 L CNN
+F 1 "CONN_01X02" H 2931 3649 50  0000 L CNN
+F 2 "w_conn_mkds:mkds_1,5-2" H 2850 3700 50  0001 C CNN
+F 3 "" H 2850 3700 50  0001 C CNN
+	1    2850 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 2850 2600 3650
+Wire Wire Line
+	2600 3650 2650 3650
+Wire Wire Line
+	2650 3750 2600 3750
+Wire Wire Line
+	2600 3750 2600 3900
+Connection ~ 2600 3900
+$Comp
+L TEST_1P J9
+U 1 1 598C583D
+P 4250 1850
+F 0 "J9" H 4311 1971 50  0000 L CNN
+F 1 "TEST_1P" H 4311 1878 50  0000 L CNN
+F 2 "w_details:testpoint_1mm" H 4450 1850 50  0001 C CNN
+F 3 "" H 4450 1850 50  0001 C CNN
+	1    4250 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L TEST_1P J7
+U 1 1 598C5B94
+P 3550 2800
+F 0 "J7" H 3611 2921 50  0000 L CNN
+F 1 "TEST_1P" H 3611 2828 50  0000 L CNN
+F 2 "w_details:testpoint_1mm" H 3750 2800 50  0001 C CNN
+F 3 "" H 3750 2800 50  0001 C CNN
+	1    3550 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L TEST_1P J6
+U 1 1 598C5C4C
+P 2250 3150
+F 0 "J6" H 2311 3271 50  0000 L CNN
+F 1 "TEST_1P" H 2311 3178 50  0000 L CNN
+F 2 "w_details:testpoint_1mm" H 2450 3150 50  0001 C CNN
+F 3 "" H 2450 3150 50  0001 C CNN
+	1    2250 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 3150 2250 3250
+Connection ~ 2250 3250
+Wire Wire Line
+	3550 2800 3550 2850
+Connection ~ 3550 2850
+$Comp
+L TEST_1P J8
+U 1 1 598C6B00
+P 4200 4700
+F 0 "J8" H 4261 4821 50  0000 L CNN
+F 1 "TEST_1P" H 4261 4728 50  0000 L CNN
+F 2 "w_details:testpoint_1mm" H 4400 4700 50  0001 C CNN
+F 3 "" H 4400 4700 50  0001 C CNN
+	1    4200 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 4700 4200 4800
+Connection ~ 4200 4800
+Text Notes 2550 4250 1    60   ~ 0
+Switch Normally Open
+Wire Notes Line
+	2850 4050 5500 4050
+Wire Notes Line
+	5500 4050 5500 5900
+Wire Notes Line
+	5500 5900 2850 5900
+Wire Notes Line
+	2850 5900 2850 4050
+Text Notes 3600 5800 0    60   ~ 0
+Battery Monitor
+$Comp
+L Q_PMOS_GDS Q5
+U 1 1 5991B54D
+P 4850 2050
+F 0 "Q5" H 5056 2097 50  0000 L CNN
+F 1 "AO3401" H 5056 2004 50  0000 L CNN
+F 2 "w_smd_trans:sot23" H 5056 1957 50  0001 L CNN
+F 3 "" H 4850 2050 50  0001 C CNN
+	1    4850 2050
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3900 1950 4650 1950
+Wire Wire Line
+	5050 1950 7050 1950
+Wire Wire Line
+	3700 2400 4850 2400
+Wire Wire Line
+	4850 2400 4850 2250
+Connection ~ 3700 2400
+Wire Notes Line
+	4500 1350 5550 1350
+Wire Notes Line
+	5550 1350 5550 2650
+Wire Notes Line
+	5550 2650 4500 2650
+Wire Notes Line
+	4500 2650 4500 1350
+Wire Notes Line
+	3400 1400 3400 3250
+Wire Notes Line
+	3400 3250 4400 3250
+Wire Notes Line
+	4400 3250 4400 1400
+Wire Notes Line
+	4400 1400 3400 1400
+Text Notes 3500 1550 0    60   ~ 0
+Latch Circuit
+Text Notes 4550 1450 0    60   ~ 0
+Reverse Protection
+$Comp
+L ES-WROOM-32 U2
+U 1 1 599B005F
+P 8100 2600
+F 0 "U2" H 8075 3946 60  0000 C CNN
+F 1 "ES-WROOM-32" H 8075 3836 60  0000 C CNN
+F 2 "module:ESP-WROOM-32-short" H 8550 2300 60  0001 C CNN
+F 3 "" H 8550 2300 60  0001 C CNN
+	1    8100 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R6
+U 1 1 599B0105
+P 6900 2150
+F 0 "R6" H 6970 2197 50  0000 L CNN
+F 1 "100k" H 6970 2104 50  0000 L CNN
+F 2 "w_smd_resistors:r_0603" V 6830 2150 50  0001 C CNN
+F 3 "" H 6900 2150 50  0001 C CNN
+	1    6900 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C5
+U 1 1 599B020B
+P 6700 1700
+F 0 "C5" H 6815 1747 50  0000 L CNN
+F 1 "100nF" H 6815 1654 50  0000 L CNN
+F 2 "w_smd_cap:c_0603" H 6738 1550 50  0001 C CNN
+F 3 "" H 6700 1700 50  0001 C CNN
+	1    6700 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C4
+U 1 1 599B0685
+P 6450 1700
+F 0 "C4" H 6565 1747 50  0000 L CNN
+F 1 "10uF" H 6565 1654 50  0000 L CNN
+F 2 "w_smd_cap:c_0805" H 6488 1550 50  0001 C CNN
+F 3 "" H 6450 1700 50  0001 C CNN
+	1    6450 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR07
+U 1 1 599B0802
+P 6950 1100
+F 0 "#PWR07" H 6950 850 50  0001 C CNN
+F 1 "GND" H 6955 923 50  0000 C CNN
+F 2 "" H 6950 1100 50  0001 C CNN
+F 3 "" H 6950 1100 50  0001 C CNN
+	1    6950 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6950 1100 6950 1000
+Wire Wire Line
+	6950 1000 7050 1000
+Wire Wire Line
+	7050 1000 7050 1800
+Wire Wire Line
+	7050 1800 7200 1800
+Wire Wire Line
+	7050 1950 7050 1900
+Wire Wire Line
+	7050 1900 7200 1900
+Connection ~ 5850 1950
+Wire Wire Line
+	7200 2000 7050 2000
+Wire Wire Line
+	7050 2000 7050 2350
+Wire Wire Line
+	7050 2350 6900 2350
+Wire Wire Line
+	6900 2350 6900 2300
+Wire Wire Line
+	6900 2000 6900 1950
+Connection ~ 6900 1950
+Wire Wire Line
+	6700 1850 6700 1950
+Connection ~ 6700 1950
+Wire Wire Line
+	6450 1850 6450 1950
+Connection ~ 6450 1950
+Wire Wire Line
+	6700 1550 6700 1450
+Wire Wire Line
+	6450 1450 7050 1450
+Connection ~ 7050 1450
+Wire Wire Line
+	6450 1550 6450 1450
+Connection ~ 6700 1450
+$Comp
+L CONN_01X05 J10
+U 1 1 599B0EE6
+P 9550 2050
+F 0 "J10" H 9631 2092 50  0000 L CNN
+F 1 "CONN_01X05" H 9631 1999 50  0000 L CNN
+F 2 "w_pin_strip:pin_socket_5" H 9550 2050 50  0001 C CNN
+F 3 "" H 9550 2050 50  0001 C CNN
+	1    9550 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7050 1250 9200 1250
+Wire Wire Line
+	9200 1250 9200 1850
+Wire Wire Line
+	9200 1850 9350 1850
+Connection ~ 7050 1250
+Wire Wire Line
+	9350 1950 9150 1950
+Wire Wire Line
+	9150 1950 9150 1300
+Wire Wire Line
+	9150 1300 7100 1300
+Wire Wire Line
+	7100 1300 7100 2000
+Connection ~ 7100 2000
+Wire Wire Line
+	9350 2250 9150 2250
+Wire Wire Line
+	9150 2250 9150 3100
+Wire Wire Line
+	9150 3100 8950 3100
+Wire Wire Line
+	8950 2200 9100 2200
+Wire Wire Line
+	9100 2200 9100 2150
+Wire Wire Line
+	9100 2150 9350 2150
+Wire Wire Line
+	8950 2100 9050 2100
+Wire Wire Line
+	9050 2100 9050 2050
+Wire Wire Line
+	9050 2050 9350 2050
+Wire Wire Line
+	8950 2800 9100 2800
+Wire Wire Line
+	9100 2800 9100 5150
+Connection ~ 5900 5150
+Wire Wire Line
+	8950 2900 9050 2900
+Wire Wire Line
+	9050 2900 9050 4000
+Connection ~ 5900 4000
+Wire Wire Line
+	8950 1800 9200 1800
+Connection ~ 9200 1800
+NoConn ~ 8950 1900
+NoConn ~ 8950 2000
+NoConn ~ 8950 2300
+NoConn ~ 8950 2400
+NoConn ~ 8950 2500
+NoConn ~ 8950 2600
+NoConn ~ 8950 2700
+NoConn ~ 8950 3000
+NoConn ~ 8600 3600
+NoConn ~ 8500 3600
+NoConn ~ 8400 3600
+NoConn ~ 8300 3600
+NoConn ~ 8200 3600
+NoConn ~ 8100 3600
+NoConn ~ 8000 3600
+NoConn ~ 7900 3600
+NoConn ~ 7800 3600
+NoConn ~ 7700 3600
+NoConn ~ 7200 3100
+NoConn ~ 7200 3000
+NoConn ~ 7200 2900
+NoConn ~ 7200 2800
+NoConn ~ 7200 2700
+NoConn ~ 7200 2600
+NoConn ~ 7200 2500
+NoConn ~ 7200 2400
+NoConn ~ 7200 2300
+NoConn ~ 7200 2200
+NoConn ~ 7200 2100
+$Comp
+L PWR_FLAG #FLG08
+U 1 1 599B338F
+P 6250 1900
+F 0 "#FLG08" H 6250 1975 50  0001 C CNN
+F 1 "PWR_FLAG" H 6250 2078 50  0000 C CNN
+F 2 "" H 6250 1900 50  0001 C CNN
+F 3 "" H 6250 1900 50  0001 C CNN
+	1    6250 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6250 1900 6250 1950
+Connection ~ 6250 1950
+Wire Wire Line
+	8100 2300 8100 1250
+Connection ~ 8100 1250
+$EndSCHEMATC
