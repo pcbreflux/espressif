@@ -1,4 +1,4 @@
-(kicad_pcb (version 20170123) (host pcbnew no-vcs-found-db3491f~59~ubuntu17.04.1)
+(kicad_pcb (version 20170123) (host pcbnew no-vcs-found-91ed3e2~59~ubuntu16.04.1)
 
   (general
     (thickness 1.6)
@@ -10,12 +10,6 @@
   )
 
   (page A4)
-  (title_block
-    (title "ESP32 Battery Monitor and Latch Circuit")
-    (rev 1.2)
-    (company pcbreflux)
-  )
-
   (layers
     (0 F.Cu signal)
     (31 B.Cu signal)
@@ -66,7 +60,7 @@
     (pad_to_mask_clearance 0.1)
     (aux_axis_origin 0 0)
     (grid_origin 20 190)
-    (visible_elements FFFFF77F)
+    (visible_elements FFFFFF7F)
     (pcbplotparams
       (layerselection 0x030fc_ffffffff)
       (usegerberextensions false)

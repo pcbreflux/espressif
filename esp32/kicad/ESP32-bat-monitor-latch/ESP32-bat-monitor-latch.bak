@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:module
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -36,7 +37,7 @@ encoding utf-8
 Sheet 1 1
 Title "ESP32 Battery Monitor and Latch Circuit"
 Date "2017-08-10"
-Rev "1.2"
+Rev "1.1"
 Comp "pcbreflux"
 Comment1 ""
 Comment2 ""

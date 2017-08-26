@@ -1,4 +1,4 @@
-(kicad_pcb (version 20170123) (host pcbnew no-vcs-found-db3491f~59~ubuntu17.04.1)
+(kicad_pcb (version 20170123) (host pcbnew no-vcs-found-91ed3e2~59~ubuntu16.04.1)
 
   (general
     (thickness 1.6)
@@ -10,12 +10,6 @@
   )
 
   (page A4)
-  (title_block
-    (title "ESP32 Battery Monitor and Latch Circuit")
-    (rev 1.2)
-    (company schematic)
-  )
-
   (layers
     (0 F.Cu signal)
     (31 B.Cu signal)
@@ -1942,7 +1936,7 @@
     (effects (font (size 1.5 1.5) (thickness 0.3)))
   )
   (dimension 50 (width 0.3) (layer F.SilkS)
-    (gr_text "50,000 mm" (at 128.65 64 270) (layer F.SilkS) (tstamp 59A19156)
+    (gr_text "50,000 mm" (at 128.65 64 270) (layer F.SilkS) (tstamp 599C0203)
       (effects (font (size 1.5 1.5) (thickness 0.3)))
     )
     (feature1 (pts (xy 135 89) (xy 127.3 89)))
@@ -1954,7 +1948,7 @@
     (arrow2b (pts (xy 130 39) (xy 130.586421 40.126504)))
   )
   (dimension 33 (width 0.3) (layer F.SilkS)
-    (gr_text "33,000 mm" (at 151.392961 31.28309) (layer F.SilkS) (tstamp 59A19157)
+    (gr_text "33,000 mm" (at 151.392961 31.28309) (layer F.SilkS) (tstamp 599C0204)
       (effects (font (size 1.5 1.5) (thickness 0.3)))
     )
     (feature1 (pts (xy 134.892961 38.63309) (xy 134.892961 29.93309)))
