@@ -17,17 +17,39 @@
 #include "ESP32_IR_Remote.h"
 
 const int RECV_PIN = 22; // pin on the ESP32
+const int LED1_PIN = 5; // pin on the ESP32
+const int LED2_PIN = 18; // pin on the ESP32
 
-ESP32_IRrecv irrecv(RECV_PIN);
+ESP32_IRrecv irrecv(RECV_PIN,3);
+static uint8_t command=0;
+static uint8_t led1_stat=0;
+static uint8_t led2_stat=0;
 
 void setup() {
   Serial.begin(115200);
   Serial.println("Initializing...");
   irrecv.init();
   Serial.println("Init complete");
+  pinMode(LED1_PIN, OUTPUT);
+  digitalWrite(LED1_PIN, led1_stat);   // turn the LED initialy off (0)
+  pinMode(LED2_PIN, OUTPUT);
+  digitalWrite(LED2_PIN, led2_stat);   // turn the LED initialy off (0)
 }
 
 void loop() {
-  irrecv.readIR();
+  command=irrecv.readIR();
+  if (command!=0) {
+    Serial.println(command);
+    if (command==22) {  // Button 1 on my remote
+      led1_stat=1-led1_stat;
+      digitalWrite(LED1_PIN, led1_stat);   // turn the LED on or off (1=HIGH is the voltage level)
+    }
+    if (command==25) {  // Button 2 on my remote
+      led2_stat=1-led2_stat;
+      digitalWrite(LED2_PIN, led2_stat);   // turn the LED on or off (1=HIGH is the voltage level)
+    }
+
+    
+  }
 }
 

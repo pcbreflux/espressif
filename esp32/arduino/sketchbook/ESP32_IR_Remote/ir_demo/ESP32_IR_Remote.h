@@ -36,16 +36,18 @@ extern "C" {
 class ESP32_IRrecv {
   public:
     ESP32_IRrecv (int recvpin);
+    ESP32_IRrecv (int recvpin, int port);
     void init();
-    void readIR();
+    uint8_t readIR();
 
   private:
     int gpionum;
+    int rmtport;
     void dumpStatus(rmt_channel_t channel);
     bool isInRange(rmt_item32_t item, int lowDuration, int highDuration, int tolerance);
     bool NEC_is0(rmt_item32_t item);
     bool NEC_is1(rmt_item32_t item);
-    void decodeNEC(rmt_item32_t *data, int numItems);
+    uint8_t decodeNEC(rmt_item32_t *data, int numItems);
     
 };
 

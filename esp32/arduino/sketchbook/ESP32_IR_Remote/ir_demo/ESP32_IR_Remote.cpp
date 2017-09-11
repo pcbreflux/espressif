@@ -84,14 +84,28 @@ void ESP32_IRrecv::dumpStatus(rmt_channel_t channel) {
    */
 }
 
+ESP32_IRrecv::ESP32_IRrecv(int recvpin, int port) {
+  
+  if (recvpin>=GPIO_NUM_0 && recvpin<GPIO_NUM_MAX) {
+    gpionum = recvpin;
+  } else {
+    gpionum = (int)GPIO_NUM_22;
+  }
+  if (port<=RMT_CHANNEL_0 && port<RMT_CHANNEL_MAX) {
+    rmtport = port;
+  } else {
+    rmtport = (int)RMT_CHANNEL_0;
+  }
+}
+
 ESP32_IRrecv::ESP32_IRrecv(int recvpin) {
-  gpionum = recvpin;
+  ESP32_IRrecv(recvpin,(int)RMT_CHANNEL_0);
 }
 
 void ESP32_IRrecv::init() {
   rmt_config_t config;
   config.rmt_mode = RMT_MODE_RX;
-  config.channel = RMT_CHANNEL_0;
+  config.channel = (rmt_channel_t)rmtport;
   config.gpio_num = (gpio_num_t)gpionum;
   config.mem_block_num = 2;
   config.rx_config.filter_en = 1;
@@ -132,10 +146,10 @@ bool ESP32_IRrecv::NEC_is1(rmt_item32_t item) {
   return isInRange(item, NEC_BIT_MARK, NEC_ONE_SPACE, 100);
 }
 
-void ESP32_IRrecv::decodeNEC(rmt_item32_t *data, int numItems) {
+uint8_t ESP32_IRrecv::decodeNEC(rmt_item32_t *data, int numItems) {
   if (!isInRange(data[0], NEC_HDR_MARK, NEC_HDR_SPACE, 200)) {
     //ESP_LOGD(TAG, "Not an NEC");
-    return;
+    return 0;
   }
   int i;
   uint8_t address = 0, notAddress = 0, command = 0, notCommand = 0;
@@ -171,17 +185,20 @@ void ESP32_IRrecv::decodeNEC(rmt_item32_t *data, int numItems) {
   //ESP_LOGD(TAG, "Address: 0x%.2x, NotAddress: 0x%.2x", address, notAddress ^ 0xff);
   if (address != (notAddress ^ 0xff) || command != (notCommand ^ 0xff)) {
     // Data mis match
-    return;
+    return 0;
   }
-  Serial.print("Address: ");
-  Serial.print(address);
-  Serial.print(" Command: ");
-  Serial.println(command);
+  // Serial.print("Address: ");
+  // Serial.print(address);
+  // Serial.print(" Command: ");
+  // Serial.println(command);
+
+  return command;
 }
 
 
-void ESP32_IRrecv::readIR() {
+uint8_t ESP32_IRrecv::readIR() {
   size_t itemSize;
+  uint8_t command = 0;
 
   rmt_item32_t* item = (rmt_item32_t*) xRingbufferReceive((RingbufHandle_t)ringBuf, (size_t *)&itemSize, (TickType_t)portMAX_DELAY);
 
@@ -191,6 +208,8 @@ void ESP32_IRrecv::readIR() {
   for (i=0; i<numItems; i++) {
     p++;
   }
-  decodeNEC(item, numItems);
+  command=decodeNEC(item, numItems);
   vRingbufferReturnItem(ringBuf, (void*) item);
+
+  return command;
 }
