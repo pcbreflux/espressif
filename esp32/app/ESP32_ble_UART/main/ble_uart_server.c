@@ -45,6 +45,8 @@
 #define HIGH 1
 #define LOW 0
 
+static uint8_t led_stat=0;
+
 
 uint8_t char1_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33};
 uint8_t char2_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33};
@@ -255,7 +257,7 @@ void descr2_read_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 	esp_gatt_rsp_t rsp;
 	memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
 	rsp.attr_value.handle = param->read.handle;
-	if (gl_char[0].descr_val!=NULL) {
+	if (gl_char[1].descr_val!=NULL) {
 		ESP_LOGI(GATTS_TAG, "descr2_read_handler descr_val %d\n",gl_char[1].descr_val->attr_len);
 		rsp.attr_value.len = gl_char[1].descr_val->attr_len;
 		for (uint32_t pos=0;pos<gl_char[1].descr_val->attr_len&&pos<gl_char[1].descr_val->attr_max_len;pos++) {
@@ -302,8 +304,13 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
     esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
     if (strncmp((const char *)gl_char[0].char_val->attr_value,"LED ON",6)==0) {
     	gpio_set_level(LED_PIN,HIGH);
+    	led_stat=1;
     } else if (strncmp((const char *)gl_char[0].char_val->attr_value,"LED OFF",7)==0) {
     	gpio_set_level(LED_PIN,LOW);
+    	led_stat=0;
+    } else if (strncmp((const char *)gl_char[0].char_val->attr_value,"LED SWITCH",10)==0) {
+    	led_stat=1-led_stat;
+    	gpio_set_level(LED_PIN,led_stat);
     } else {
     	char2_notify_handle(gatts_if, param->write.conn_id);
     }
