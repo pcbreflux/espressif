@@ -15,7 +15,7 @@
 #ifndef __BLUFI_GATTS_PROFILE_H__
 #define __BLUFI_GATTS_PROFILE_H__
 
-#include "bt.h"
+#include "esp_bt.h"
 #include "bta_api.h"
 
 #include "esp_gap_ble_api.h"
