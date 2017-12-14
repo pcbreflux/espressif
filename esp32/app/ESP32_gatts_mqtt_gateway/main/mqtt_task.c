@@ -10,13 +10,13 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
-#include "freertos/heap_regions.h"
+//#include "freertos/heap_regions.h"
 
 #include "esp_wifi.h"
 #include "esp_event_loop.h"
 #include "esp_log.h"
 #include "esp_system.h"
-#include "esp_heap_alloc_caps.h"
+//#include "esp_heap_alloc_caps.h"
 
 #include "nvs_flash.h"
 
@@ -25,10 +25,12 @@
 #define MQTT_TAG "MQTT"
 
 /* Constants that aren't configurable in menuconfig */
-#define MQTT_SERVER "abc.cloudmqtt.com"
-#define MQTT_USER "user"
-#define MQTT_PASS "pass"
-#define MQTT_PORT 12345
+#define MQTT_SERVER "m20.cloudmqtt.com"
+#define MQTT_USER "sen1"
+#define MQTT_PASS "sen1"
+//#define MQTT_PORT 1883
+//#define MQTT_PORT 24352
+#define MQTT_PORT 34352
 //#define MQTT_WEBSOCKET 0  // 0=no 1=yes
 #define MQTT_WEBSOCKET 1  // 0=no 1=yes
 #define MQTT_BUF_SIZE 512
@@ -59,7 +61,7 @@ void mqtt_task(void *pvParameters) {
 
     ESP_LOGI(MQTT_TAG, "Start MQTT Task ...");
 
-	ESP_LOGI(MQTT_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+//	ESP_LOGI(MQTT_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
 	ESP_LOGI(MQTT_TAG,"NetworkConnect %s:%d ...",MQTT_SERVER,MQTT_PORT);
 	NetworkConnect(&network, MQTT_SERVER, MQTT_PORT);
 	ESP_LOGI(MQTT_TAG,"MQTTClientInit  ...");

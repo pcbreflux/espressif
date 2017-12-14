@@ -479,7 +479,7 @@ int NetworkConnect(Network* n, char* addr, int port) {
 	mbedtls_net_init(&n->server_fd);
 
 	sprintf(portbuf,"%d",port);
-    ESP_LOGD(TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+//    ESP_LOGD(TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
 	ESP_LOGI(TAG, "Connecting to %s:%s...", addr, portbuf);
 
 	if ((ret = mbedtls_net_connect(&n->server_fd, addr,
@@ -496,7 +496,7 @@ int NetworkConnect(Network* n, char* addr, int port) {
 
 	mbedtls_ssl_set_bio(&n->ssl, &n->server_fd, mbedtls_net_send, mbedtls_net_recv, NULL);
 
-    ESP_LOGD(TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+//    ESP_LOGD(TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
 	ESP_LOGD(TAG, "Performing the SSL/TLS handshake...");
 
 	uint32_t hspos=0;
@@ -509,7 +509,7 @@ int NetworkConnect(Network* n, char* addr, int port) {
 		ESP_LOGD(TAG, "SSL/TLS handshake...%u",hspos++);
 	}
 
-    ESP_LOGD(TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+//    ESP_LOGD(TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
 	ESP_LOGD(TAG, "Verifying peer X.509 certificate...");
 
 	if ((flags = mbedtls_ssl_get_verify_result(&n->ssl)) != 0)
@@ -524,7 +524,7 @@ int NetworkConnect(Network* n, char* addr, int port) {
 		ESP_LOGD(TAG, "Certificate verified.");
 	}
 
-    ESP_LOGD(TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+//    ESP_LOGD(TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
 	if (n->websocket) {
 		unsigned char uuid[40];
 		unsigned char uuid64[60];

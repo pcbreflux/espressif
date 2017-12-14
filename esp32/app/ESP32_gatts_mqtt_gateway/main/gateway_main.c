@@ -20,13 +20,13 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
-#include "freertos/heap_regions.h"
+//#include "freertos/heap_regions.h"
 
 #include "esp_wifi.h"
 #include "esp_event_loop.h"
 #include "esp_log.h"
 #include "esp_system.h"
-#include "esp_heap_alloc_caps.h"
+//#include "esp_heap_alloc_caps.h"
 
 #include "nvs_flash.h"
 
@@ -103,28 +103,47 @@ static void initialise_wifi(void) {
 
 
 void app_main() {
+    esp_err_t ret;
 
-    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+
+//    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
     nvs_flash_init();
 
-    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+//    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
     initialise_wifi();
 
-    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
-    esp_bt_controller_init();
+//    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+    esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
+    ret = esp_bt_controller_init(&bt_cfg);
+    if (ret) {
+        ESP_LOGE(MAIN_TAG, "%s initialize controller failed\n", __func__);
+        return;
+    }
+
+    ret = esp_bt_controller_enable(ESP_BT_MODE_BTDM);
+    if (ret) {
+        ESP_LOGE(MAIN_TAG, "%s enable controller failed\n", __func__);
+        return;
+    }
 
     ESP_ERROR_CHECK(esp_bt_controller_enable(ESP_BT_MODE_BTDM)); // 2017-03-09 Now only support BTDM.
-    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+//    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
 
-    ESP_ERROR_CHECK(esp_bluedroid_init());
-    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
-    ESP_ERROR_CHECK(esp_bluedroid_enable());
-    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+    ret = esp_bluedroid_init();
+    if (ret) {
+        ESP_LOGE(MAIN_TAG, "%s init bluetooth failed\n", __func__);
+        return;
+    }
+    ret = esp_bluedroid_enable();
+    if (ret) {
+        ESP_LOGE(MAIN_TAG, "%s enable bluetooth failed\n", __func__);
+        return;
+    }
 
     esp_ble_gatts_register_callback(gatts_event_handler);
     esp_ble_gap_register_callback(gap_event_handler);
     esp_ble_gatts_app_register(PROFILE_APP_ID);
 
-    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
+//    ESP_LOGI(MAIN_TAG,"free DRAM %u IRAM %u",esp_get_free_heap_size(),xPortGetFreeHeapSizeTagged(MALLOC_CAP_32BIT));
 
 }

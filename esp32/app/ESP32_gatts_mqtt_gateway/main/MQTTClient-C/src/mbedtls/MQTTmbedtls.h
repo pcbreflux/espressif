@@ -30,10 +30,10 @@
 #include "freertos/semphr.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
-#include "freertos/heap_regions.h"
+//#include "freertos/heap_regions.h"
 
 #include "esp_system.h"
-#include "esp_heap_alloc_caps.h"
+//#include "esp_heap_alloc_caps.h"
 
 //#include "mbedtls/config.h"
 #include "mbedtls/platform.h"
