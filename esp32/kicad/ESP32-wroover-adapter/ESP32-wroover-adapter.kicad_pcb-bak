@@ -312,8 +312,8 @@
     (pad 39 thru_hole circle (at 8.6 -32.18) (size 0.8 0.8) (drill 0.3) (layers *.Cu *.Mask)
       (net 3 GND))
     (model ${KIWALTER3DMOD}/nrf51822-04_module.x3d
-      (at (xyz 0.4330708661417323 1.181102362204725 0))
-      (scale (xyz 2 2.8 1))
+      (at (xyz 0.4330708661417323 1.043307086614173 0))
+      (scale (xyz 2 2.2 1))
       (rotate (xyz 0 0 0))
     )
   )
