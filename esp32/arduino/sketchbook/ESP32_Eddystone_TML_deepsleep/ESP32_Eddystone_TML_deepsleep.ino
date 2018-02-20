@@ -113,7 +113,7 @@ void setup() {
   setBeacon();
    // Start advertising
   pAdvertising->start();
-  Serial.println("Advertizing startet...");
+  Serial.println("Advertizing started...");
   delay(100);
   pAdvertising->stop();
   Serial.printf("enter deep sleep\n");
