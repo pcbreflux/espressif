@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L module:ES-WROOM-32 U2
+L module:ESP-WROOM-32 U2
 U 1 1 5B3380F2
 P 2700 5200
 F 0 "U2" H 2050 6400 60  0000 C CNN
