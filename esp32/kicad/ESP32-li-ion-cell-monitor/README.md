@@ -1,19 +1,19 @@
-ESP32 Li-Ion Cell Monitor (i.e. 18650 ...)
+# ESP32 Li-Ion Cell Monitor (i.e. 18650 ...)
 ===========================
 
-Application: kicad
+## Application: kicad
 
-Version: 6.0.0-rc1-unknown-7dfc4e3~65~ubuntu18.04.1, release build
+## Version: 6.0.0-rc1-unknown-7dfc4e3~65~ubuntu18.04.1, release build
 
-Libraries:
+## Libraries:
 
     wxWidgets 3.0.4
 
     libcurl/7.58.0 OpenSSL/1.1.0g zlib/1.2.11 libidn2/2.0.4 libpsl/0.19.1 (+libidn2/2.0.4) nghttp2/1.30.0 librtmp/2.3
 
-Platform: Linux 4.15.0-29-generic x86_64, 64 bit, Little endian, wxGTK
+## Platform: Linux 4.15.0-29-generic x86_64, 64 bit, Little endian, wxGTK
 
-Build Info:
+## Build Info:
 
     wxWidgets: 3.0.4 (wchar_t,wx containers,compatible with 2.8) GTK+ 2.24
 
@@ -27,7 +27,7 @@ Build Info:
 
 
 
-Build settings:
+## Build settings:
 
     USE_WX_GRAPHICS_CONTEXT=OFF
 
