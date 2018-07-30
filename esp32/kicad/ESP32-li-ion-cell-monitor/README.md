@@ -1,4 +1,4 @@
-# ESP32 Li-Ion Cell Monitor (:battery: i.e. 18650 ...)
+# ESP32 Li-Ion Cell Monitor (:battery: i.e. 18650 ...  :zap:)
 ===========================
 
 
