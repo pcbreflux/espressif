@@ -1,11 +1,11 @@
-G04 #@! TF.GenerationSoftware,KiCad,Pcbnew,5.0.0-rc3-unknown-3df2743~65~ubuntu18.04.1*
-G04 #@! TF.CreationDate,2018-07-04T11:38:03+02:00*
-G04 #@! TF.ProjectId,ESP32-li-ion-cell-monitor,45535033322D6C692D696F6E2D63656C,1.0*
+G04 #@! TF.GenerationSoftware,KiCad,Pcbnew,6.0.0-rc1-unknown-7dfc4e3~65~ubuntu18.04.1*
+G04 #@! TF.CreationDate,2018-07-30T15:29:30+02:00*
+G04 #@! TF.ProjectId,ESP32-li-ion-cell-monitor,45535033322D6C692D696F6E2D63656C,1.1*
 G04 #@! TF.SameCoordinates,Original*
 G04 #@! TF.FileFunction,Profile,NP*
 %FSLAX46Y46*%
 G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
-G04 Created by KiCad (PCBNEW 5.0.0-rc3-unknown-3df2743~65~ubuntu18.04.1) date Wed Jul  4 11:38:03 2018*
+G04 Created by KiCad (PCBNEW 6.0.0-rc1-unknown-7dfc4e3~65~ubuntu18.04.1) date Mon Jul 30 15:29:30 2018*
 %MOMM*%
 %LPD*%
 G01*
