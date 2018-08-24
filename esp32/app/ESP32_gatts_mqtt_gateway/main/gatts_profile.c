@@ -21,8 +21,11 @@
 #include "esp_system.h"
 #include "esp_log.h"
 
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
 #include "esp_bt.h"
-#include "bta_api.h"
+//#include "bta_api.h"
 
 #include "esp_gap_ble_api.h"
 #include "esp_gatts_api.h"
