@@ -52,7 +52,7 @@ void isrAFall() {
  if(stateB==1) {
   rotValue++; // forward
  } else {
-  rotValue--;//moving reverse
+  rotValue--; // reverse
  }
  Serial.print("isrAFall A ");
  Serial.print(stateA);
