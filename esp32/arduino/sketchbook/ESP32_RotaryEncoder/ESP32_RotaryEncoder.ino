@@ -5,7 +5,11 @@
 // +   ... 3.3V
 // GND ... GND
 
-
+#include <Arduino.h>
+void IRAM_ATTR isrARise();
+void IRAM_ATTR isrAFall();
+void IRAM_ATTR isrBRise();
+void IRAM_ATTR isrBFall();
 
 long int rotValue;
 uint8_t stateA=0, stateB=1;
@@ -13,21 +17,7 @@ uint8_t stateA=0, stateB=1;
 #define ROTARY_PINA 2
 #define ROTARY_PINB 4
 
-void setup(){
-  pinMode(ROTARY_PINA, INPUT_PULLUP);
-  pinMode(ROTARY_PINB, INPUT_PULLUP);
-
-  attachInterrupt(ROTARY_PINA, isrARise, RISING);
-  attachInterrupt(ROTARY_PINB, isrBRise, RISING);
-  Serial.begin(115200);
-}
-
-
-void loop(){
-    
-}
-
-void isrARise(){
+void IRAM_ATTR isrARise() {
  detachInterrupt(ROTARY_PINA);
  stateA=1;
  
@@ -45,7 +35,7 @@ void isrARise(){
  attachInterrupt(ROTARY_PINA, isrAFall, FALLING);
 }
 
-void isrAFall() {
+void IRAM_ATTR isrAFall() {
  detachInterrupt(ROTARY_PINA);
  stateA=0;
  
@@ -63,7 +53,7 @@ void isrAFall() {
  attachInterrupt(ROTARY_PINA, isrARise, RISING);  
 }
 
-void isrBRise(){
+void IRAM_ATTR isrBRise() {
  detachInterrupt(ROTARY_PINB);
  stateB=1;
  
@@ -81,7 +71,7 @@ void isrBRise(){
  attachInterrupt(ROTARY_PINB, isrBFall, FALLING);
 }
 
-void isrBFall(){
+void IRAM_ATTR isrBFall() {
  detachInterrupt(ROTARY_PINB);
  stateB=0;
  
@@ -97,6 +87,20 @@ void isrBFall(){
  Serial.print(" rotValue ");
  Serial.println(rotValue);
  attachInterrupt(ROTARY_PINB, isrBRise, RISING);
+}
+
+void setup(){
+  pinMode(ROTARY_PINA, INPUT_PULLUP);
+  pinMode(ROTARY_PINB, INPUT_PULLUP);
+
+  attachInterrupt(ROTARY_PINA, isrARise, RISING);
+  attachInterrupt(ROTARY_PINB, isrBRise, RISING);
+  Serial.begin(115200);
+}
+
+
+void loop(){
+    
 }
 
 
