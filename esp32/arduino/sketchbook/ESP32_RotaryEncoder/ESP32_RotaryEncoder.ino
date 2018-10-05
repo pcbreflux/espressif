@@ -93,8 +93,7 @@ void IRAM_ATTR isrBFall() {
 
 void IRAM_ATTR isrSWAll() {
  detachInterrupt(ROTARY_PINSW);
- stateB=0;
- 
+
  swValue++;
 
  Serial.print("isrSWAll ");
