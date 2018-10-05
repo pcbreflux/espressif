@@ -1,7 +1,7 @@
 // KY-040 
 // CLK ... PIN 4
 // DT  ... PIN 2
-// SW  ... not implemented
+// SW  ... PIN 16
 // +   ... 3.3V
 // GND ... GND
 
@@ -10,12 +10,14 @@ void IRAM_ATTR isrARise();
 void IRAM_ATTR isrAFall();
 void IRAM_ATTR isrBRise();
 void IRAM_ATTR isrBFall();
+void IRAM_ATTR isrSWAll();
 
-long int rotValue;
+long int rotValue=0, swValue=0;
 uint8_t stateA=0, stateB=1;
 
 #define ROTARY_PINA 2
 #define ROTARY_PINB 4
+#define ROTARY_PINSW 16
 
 void IRAM_ATTR isrARise() {
  detachInterrupt(ROTARY_PINA);
@@ -89,12 +91,25 @@ void IRAM_ATTR isrBFall() {
  attachInterrupt(ROTARY_PINB, isrBRise, RISING);
 }
 
+void IRAM_ATTR isrSWAll() {
+ detachInterrupt(ROTARY_PINSW);
+ stateB=0;
+ 
+ swValue++;
+
+ Serial.print("isrSWAll ");
+ Serial.println(swValue);
+ attachInterrupt(ROTARY_PINSW, isrSWAll, CHANGE);
+}
+
 void setup(){
   pinMode(ROTARY_PINA, INPUT_PULLUP);
   pinMode(ROTARY_PINB, INPUT_PULLUP);
+  pinMode(ROTARY_PINSW, INPUT_PULLUP);
 
   attachInterrupt(ROTARY_PINA, isrARise, RISING);
   attachInterrupt(ROTARY_PINB, isrBRise, RISING);
+  attachInterrupt(ROTARY_PINSW, isrSWAll, CHANGE);
   Serial.begin(115200);
 }
 
