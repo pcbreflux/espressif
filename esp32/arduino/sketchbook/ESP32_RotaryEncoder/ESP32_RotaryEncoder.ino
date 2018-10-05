@@ -1,9 +1,9 @@
-// KY-040 
-// CLK ... PIN 4
-// DT  ... PIN 2
-// SW  ... PIN 16
-// +   ... 3.3V
-// GND ... GND
+// KY-040 ...  ESP32
+// CLK    ...  PIN 4
+// DT     ...  PIN 2
+// SW     ...  PIN 16
+// +      ...  3.3V
+// GND    ...  GND
 
 #include <Arduino.h>
 void IRAM_ATTR isrARise();
