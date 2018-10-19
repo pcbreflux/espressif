@@ -19,7 +19,7 @@ static boolean doConnect = false;
 static boolean connected = false;
 static BLERemoteCharacteristic* pRemoteCharacteristic;
 
-#define BLE_SERVER_SERVIVE_NAME "UART Service"
+#define BLE_SERVER_SERVICE_NAME "UART Service"
 #define GPIO_DEEP_SLEEP_DURATION     60  // sleep 1 seconds and then wake up
 
 /* 
@@ -80,7 +80,7 @@ bool connectToServer(BLEAddress pAddress) {
 }
 
 /**
- * Scan for BLE servers Named in BLE_SERVER_SERVIVE_NAME 
+ * Scan for BLE servers Named in BLE_SERVER_SERVICE_NAME 
  * and find the first one that advertises the service we are looking for.
  */
 class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
@@ -99,7 +99,7 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
 
     // We have found a device, let us now see if it contains the service we are looking for.
     //if (advertisedDevice.haveServiceUUID() && advertisedDevice.getServiceUUID().equals(serviceUUID)) {
-    if (advertisedDevice.getName()==BLE_SERVER_SERVIVE_NAME) {
+    if (advertisedDevice.getName()==BLE_SERVER_SERVICE_NAME) {
       // 
       Serial.print("Found our device!  address: "); 
       advertisedDevice.getScan()->stop();
