@@ -17,7 +17,6 @@
    6. Start advertising.
 
    In this example rxValue is the data received (only accessible inside that function).
-   And txValue is the data to be sent, in this example just a byte incremented every second. 
 */
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
@@ -26,15 +25,6 @@
 #include <BLEUtils.h>
 #include <BLE2902.h>
 #include <nvs_flash.h>
-
-#include <esp_bt_device.h>     // ESP32 BLE
-#include <esp_bt_main.h>       // ESP32 BLE
-
-#if CONFIG_FREERTOS_UNICORE
-#define ARDUINO_RUNNING_CORE 0
-#else
-#define ARDUINO_RUNNING_CORE 1
-#endif
 
 BLECharacteristic *pCharacteristic;
 BLEDescriptor *pDescriptor;
@@ -60,16 +50,21 @@ static char storebuf[STORE_MAX_SIZE+1];
 static char valbuf[VAL_MAX_SIZE+1];
 static uint32_t storeCnt; 
 
-const char* ssid     = "......"; // Your SSID (Name of your WiFi)
-const char* pass = "......."; //Your Wifi password
+const char* ssid     = "ESP32"; // Your SSID (Name of your WiFi)
+const char* pass = "example";   // Your Wifi password
 
 #define WEB_SERVER "api.thingspeak.com"
 #define WEB_PORT 443
-#define WEB_URL "https://api.thingspeak.com/update.json?api_key=............."
+//#define WEB_PORT 80
+#define WEB_URL "https://api.thingspeak.com/update.json?api_key=KEYEXAMPLE&field1=" // Change KEYEXAMPLE to your API-KEY !
+//#define WEB_URL "http://api.thingspeak.com/update.json?api_key=KEYEXAMPLE&field1="
 
 WiFiClientSecure client;
 //WiFiClient client;
 
+/* 
+ *  write value to NVS
+ */
 esp_err_t write_nvs(const char *config_parameter,const char *in_value) {
   nvs_handle my_handle;
   esp_err_t err;
@@ -110,6 +105,9 @@ esp_err_t write_nvs(const char *config_parameter,const char *in_value) {
   return err;
 }
 
+/* 
+ *  read value from NVS
+ */
 esp_err_t read_nvs(const char *config_parameter,char *out_value,size_t* length) {
   nvs_handle my_handle;
   esp_err_t err;
@@ -155,6 +153,9 @@ esp_err_t read_nvs(const char *config_parameter,char *out_value,size_t* length) 
 }
 
 
+/* 
+ *  store value to NVS
+ */
 void storeValue(String rxValue) {
   esp_err_t err;
 
@@ -181,16 +182,24 @@ void storeValue(String rxValue) {
 }
 
 
+/* 
+ *  BLE Server Callbacks
+ */
 class MyServerCallbacks: public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
       deviceConnected = true;
+        Serial.println("device connected");
     };
 
     void onDisconnect(BLEServer* pServer) {
       deviceConnected = false;
+        Serial.println("device disconnected");
     }
 };
 
+/* 
+ *  BLE Characteristic Callbacks
+ */
 class MyCallbacks: public BLECharacteristicCallbacks {
     void onWrite(BLECharacteristic *pCharacteristic) {
       std::string rxValue = pCharacteristic->getValue();
@@ -217,6 +226,9 @@ class MyCallbacks: public BLECharacteristicCallbacks {
 };
 
 
+/* 
+ *  BLE Descriptor Callbacks
+ */
 class MyDisCallbacks: public BLEDescriptorCallbacks {
     void onWrite(BLEDescriptor *pDescriptor) {
       uint8_t* rxValue = pDescriptor->getValue();
@@ -238,6 +250,9 @@ class MyDisCallbacks: public BLEDescriptorCallbacks {
     }
 };
 
+/* 
+ *  WiFi on
+ */
 void Connect_to_Wifi() {
 
   Serial.print("Attempting to connect to SSID: ");
@@ -259,18 +274,23 @@ void Connect_to_Wifi() {
   Serial.println(WiFi.localIP());
 }
 
+/* 
+ *  WiFi off
+ */
 void Disconnect_from_Wifi() {
     WiFi.disconnect(true);
     WiFi.mode(WIFI_OFF);
 }
 
 
+/* 
+ *  Send Data to Cloud-Server via WiFi
+ */
 void Send_Data() {
   esp_err_t err;
   size_t readlen;
 
   if (storeCnt>0) {
-    Connect_to_Wifi();
     sprintf(valbuf,"STOREVAL%04d",storeCnt-1);
     err=read_nvs(valbuf,storebuf,&readlen);
     if (err==ESP_OK) {
@@ -314,10 +334,12 @@ void Send_Data() {
       Serial.println("disconnecting from server.");
       client.stop();
     }
-    Disconnect_from_Wifi();
   }
 }
 
+ /* 
+  *  Activate BLE and start advertising
+ */
 void Prepare_BLE() {
   // Create the BLE Device
   BLEDevice::init("UART Service");
@@ -356,19 +378,6 @@ void Prepare_BLE() {
 
 }
 
-void Disconnect_from_BLE() {
-  Serial.println("Disconnect_from_BLE");
-  // Stop advertising
-  pServer->getAdvertising()->stop();
-
-  // Start the service
-  pService->stop();
-  esp_bluedroid_disable();
-  esp_bluedroid_deinit();
-  //esp_bt_controller_disable();
-}
-
-
 void setup() {
   esp_err_t err;
   size_t readlen;
@@ -382,14 +391,17 @@ void setup() {
     Serial.print("storeCnt ");
     Serial.println(storeCnt);
   }
-
+  
+  if (storeCnt>0) {
+    Connect_to_Wifi();
+  }
   while (storeCnt>0) {
      Send_Data();
   }  
+  Disconnect_from_Wifi();
+
   Prepare_BLE();
   
-//    Disconnect_from_BLE();
-//   storeValue("99");
 }
 
 void loop() {
