@@ -1,25 +1,19 @@
 // KY-040 ...  ESP32
 // CLK    ...  PIN 4
 // DT     ...  PIN 2
-// SW     ...  PIN 16
+// SW     ...  PIN 5
 // +      ...  3.3V
 // GND    ...  GND
 
 #include <Arduino.h>
-void IRAM_ATTR isrARise();
-void IRAM_ATTR isrAFall();
-void IRAM_ATTR isrBRise();
-void IRAM_ATTR isrBFall();
-void IRAM_ATTR isrSWAll();
 
 long int rotValue=0, swValue=0;
-uint8_t stateA=0, stateB=1;
 uint8_t state=0;
 
 
 #define ROTARY_PINA 2
 #define ROTARY_PINB 4
-#define ROTARY_PINSW 16
+#define ROTARY_PINSW 5
 
 portMUX_TYPE gpioMux = portMUX_INITIALIZER_UNLOCKED;
 
