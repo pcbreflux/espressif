@@ -12,9 +12,7 @@ test.mosquitto.org (also public) or coudmqtt.com (your private one) or others.
 ## esp-idf used
 * commit fd3ef4cdfe1ce747ef4757205f4bb797b099c9d9
 * Merge: 94a61389 52c378b4
-* Author: Angus Gratton <angus@espressif.com>
 * Date:   Fri Apr 21 12:27:32 2017 +0800
-
 
 ## eclipse
 * include include.xml to C-Paths
