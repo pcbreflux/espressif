@@ -168,14 +168,25 @@ int websocket_create_frame(uint8_t opcode,unsigned char* framebuffer, unsigned c
     if (len < 126) {
     	framebuffer[bytepos] = (mask_flag << 7 | len);
     	bytepos++;
-    } else if (len < 32768) {
+    } else if (len < 0x10000) {
     	framebuffer[bytepos] = (mask_flag << 7 | 126);
     	bytepos++;
     	framebuffer[bytepos] = (len >> 8  & 0xFF);
     	bytepos++;
     	framebuffer[bytepos] = (len & 0xFF);
     	bytepos++;
-    } // ToDo : Frame >= 32768 i.e. len == 127
+    } else {
+    	framebuffer[bytepos] = (mask_flag << 7 | 127);
+    	bytepos++;
+    	framebuffer[bytepos] = (len >> 24  & 0xFF);
+    	bytepos++;
+    	framebuffer[bytepos] = (len >> 16  & 0xFF);
+    	bytepos++;
+    	framebuffer[bytepos] = (len >> 8  & 0xFF);
+    	bytepos++;
+    	framebuffer[bytepos] = (len & 0xFF);
+    	bytepos++;
+    }
 	if (mask_flag == 1) {
     	framebuffer[bytepos] = mask_key[0];
     	bytepos++;
@@ -214,15 +225,17 @@ int websocket_remove_frame(Network* n,unsigned char* framebuffer, unsigned char*
     	bytepos++;
     	len += framebuffer[bytepos];
     	bytepos++;
-    }
-    if (len == 127) {
-    	len = 0; // ToDo : Frame >= 32768 i.e. len == 127
-        goto exit;
+    } else if (len == 127) {
+    	len = framebuffer[bytepos] << 24;
+    	bytepos++;
+    	len += framebuffer[bytepos] << 16;
+    	bytepos++;
+    	len += framebuffer[bytepos] << 8;
+    	bytepos++;
+    	len += framebuffer[bytepos];
+    	bytepos++;
     }
 
-    if (len>framlen) {
-    	len = framlen;
-    }
 	if (mask_flag == 1) {
 		mask_key[0] = framebuffer[bytepos];
     	bytepos++;
@@ -254,7 +267,6 @@ int websocket_remove_frame(Network* n,unsigned char* framebuffer, unsigned char*
 		ESP_LOGD(TAG, "opcode mbedtls_ssl_write websocket %d from %d",ret,len);
 	}
 
-exit:
     return len;
 }
 
