@@ -116,7 +116,7 @@ void ESP32_IRrecv::init() {
   ESP_ERROR_CHECK(rmt_config(&config));
   ESP_ERROR_CHECK(rmt_driver_install(config.channel, 5000, 0));
 
-  rmt_get_ringbuf_handler(config.channel, &ringBuf);
+  rmt_get_ringbuf_handle(config.channel, &ringBuf);
   dumpStatus(config.channel);
   rmt_rx_start(config.channel, 1);
 
